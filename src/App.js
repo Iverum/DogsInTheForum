@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dice from './components/Dice'
+import Thread from './components/Thread'
 
 class App extends Component {
   render() {
     return (
       <div className="App row">
-        <Dice />
+        <Thread />
       </div>
     );
   }
