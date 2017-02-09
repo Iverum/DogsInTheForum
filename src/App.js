@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import './App.css'
+import store from './store'
 import Thread from './components/Thread'
-import threadReducer from './components/Thread/dux'
-
-const rootReducer = combineReducers({ thread: threadReducer })
-const store = createStore(rootReducer)
 
 class App extends Component {
   render() {

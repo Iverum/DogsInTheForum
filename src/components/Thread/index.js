@@ -28,7 +28,6 @@ class Thread extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="twelve columns">
         {this.renderPosts()}

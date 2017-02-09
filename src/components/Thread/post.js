@@ -6,7 +6,7 @@ export default class Post extends Component {
     return (
       <div className="row">
         <div className="three columns">
-          <h1>{this.props.username}</h1>
+          <h3>{this.props.username}</h3>
         </div>
         <div className="nine columns">
           <p>{this.props.text}</p>
