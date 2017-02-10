@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react'
+import Markdown from 'markdown-it'
 import Dice from '../Dice'
+
+const mdRenderer = new Markdown()
 
 export default class Post extends Component {
 
@@ -9,9 +12,10 @@ export default class Post extends Component {
         <div className="three columns">
           <h3>{this.props.username}</h3>
         </div>
-        <div className="nine columns">
-          <p>{this.props.text}</p>
-        </div>
+        <div
+          className="nine columns"
+          dangerouslySetInnerHTML={{ __html: mdRenderer.render(this.props.text) }}
+        />
         <Dice dice={this.props.dice} />
       </div>
     )

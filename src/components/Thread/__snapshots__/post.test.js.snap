@@ -8,11 +8,13 @@ exports[`test post is rendered with username and text 1`] = `
     </h3>
   </div>
   <div
-    className="nine columns">
-    <p>
-      Lorem ipsum
-    </p>
-  </div>
+    className="nine columns"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>Lorem ipsum</p>
+      ",
+      }
+    } />
   <div
     className="dice-hand">
     <table
