@@ -1,5 +1,30 @@
 import React, { Component, PropTypes } from 'react';
 
+function parseText(text) {
+  const rollRegExp = /\[\[roll (\d*)(d\d+)\]\]/g
+  let dice = []
+  let die
+  function convertMatchIntoDie(match, index) {
+    if (die && index === 1) {
+      dice.push(die)
+    }
+    if (index === 1) {
+      die = { number: (match || 1) }
+    } else if (index === 2) {
+      die.size = match
+    }
+  }
+
+  let matches = rollRegExp.exec(text)
+  while (matches !== null) {
+    matches.forEach(convertMatchIntoDie)
+    matches = rollRegExp.exec(text)
+  }
+  if (die) { dice.push(die) }
+  const newText = text.replace(rollRegExp, '').trim()
+  return { dice, text: newText }
+}
+
 export default class NewPost extends Component {
 
   constructor(props) {
@@ -13,32 +38,9 @@ export default class NewPost extends Component {
     this.setState({ value: event.target.value })
   }
 
-  parseText(text) {
-    const rollRegExp = /\[\[roll (\d*)(d\d+)\]\]/g
-    let dice = []
-    let die
-    let matches = rollRegExp.exec(text)
-    while (matches !== null) {
-      matches.forEach((match, index) => {
-        if (die && index === 1) {
-          dice.push(die)
-        }
-        if (index === 1) {
-          die = { number: (match || 1) }
-        } else if (index === 2) {
-          die.size = match
-        }
-      })
-      matches = rollRegExp.exec(text)
-    }
-    if (die) { dice.push(die) }
-    const newText = text.replace(rollRegExp, '').trim()
-    return { dice, text: newText }
-  }
-
   submitPost(e) {
     if (this.props.onSubmit) {
-      const postInfo = this.parseText(this.state.value)
+      const postInfo = parseText(this.state.value)
       this.props.onSubmit({
         username: 'Default User',
         text: postInfo.text
