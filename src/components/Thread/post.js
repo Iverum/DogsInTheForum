@@ -19,6 +19,10 @@ export default class Post extends Component {
 
 }
 
+Post.defaultProps = {
+  dice: []
+}
+
 Post.propTypes = {
   username: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,

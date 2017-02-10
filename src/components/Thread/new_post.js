@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-function parseText(text) {
+export function parseText(text) {
   const rollRegExp = /\[\[roll (\d*)(d\d+)\]\]/g
   let dice = []
   let die
@@ -25,7 +25,7 @@ function parseText(text) {
   return { dice, text: newText }
 }
 
-function rollDice(post = { dice: [], text: '' }) {
+export function rollDice(post = { dice: [] }) {
   const { dice } = post
   const rolledDice = []
   dice.forEach(die => {
