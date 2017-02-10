@@ -25,6 +25,23 @@ function parseText(text) {
   return { dice, text: newText }
 }
 
+function rollDice(post = { dice: [], text: '' }) {
+  const { dice } = post
+  const rolledDice = []
+  dice.forEach(die => {
+    const sides = parseInt(die.size.substring(1), 10)
+    const numberOfDie = die.number
+    console.log(numberOfDie)
+    for (let i = 0; i < numberOfDie; i++) {
+      rolledDice.push({
+        type: die.size,
+        value: (1 + Math.floor(Math.random() * sides))
+      })
+    }
+  })
+  return rolledDice
+}
+
 export default class NewPost extends Component {
 
   constructor(props) {
@@ -40,10 +57,11 @@ export default class NewPost extends Component {
 
   submitPost(e) {
     if (this.props.onSubmit) {
-      const postInfo = parseText(this.state.value)
+      const post = parseText(this.state.value)
+      post.dice = rollDice(post)
       this.props.onSubmit({
         username: 'Default User',
-        text: postInfo.text
+        ...post
       })
       this.setState({ value: '' })
     }
