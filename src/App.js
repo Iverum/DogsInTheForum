@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import './App.css'
 import store from './store'
-import Thread from './components/Thread'
+import Board from './components/Board'
 
 class App extends Component {
   render() {
     return (
       <div className="App row">
         <Provider store={store}>
-          <Thread />
+          <Board />
         </Provider>
       </div>
     )
