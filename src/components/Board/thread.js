@@ -5,10 +5,10 @@ export default class Thread extends Component {
 
   render() {
     return (
-      <div className="row">
+      <section className="row">
         <a href='#' className='ten columns'><h2 className='title'>{this.props.data.name}</h2></a>
-        <span className='two columns post-count'>{this.props.data.postCount}</span>
-      </div>
+        <span className='two columns post-count'>{this.props.data.postCount} posts</span>
+      </section>
     )
   }
 
