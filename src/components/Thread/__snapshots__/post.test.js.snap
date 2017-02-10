@@ -1,0 +1,17 @@
+exports[`test post is rendered with username and text 1`] = `
+<div
+  className="row">
+  <div
+    className="three columns">
+    <h3>
+      Anonymous
+    </h3>
+  </div>
+  <div
+    className="nine columns">
+    <p>
+      Lorem ipsum
+    </p>
+  </div>
+</div>
+`;

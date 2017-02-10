@@ -14,6 +14,7 @@ export default class NewPost extends Component {
   }
 
   submitPost(e) {
+    // TODO parse post text for any special actions (ie dice rolls)
     if (this.props.onSubmit) {
       this.props.onSubmit({
         username: 'Default User',
