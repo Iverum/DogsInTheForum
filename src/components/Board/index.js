@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
+import './index.css'
 import Thread from './thread'
 
 export default class Board extends Component {
