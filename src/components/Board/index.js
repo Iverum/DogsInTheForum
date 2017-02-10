@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.css'
+import { ListView, ListRows, Pagination } from 'react-list-combo'
 import Thread from './thread'
 
 export default class Board extends Component {
@@ -8,20 +8,26 @@ export default class Board extends Component {
     return (
       <div className='twelve columns'>
         <h1>Board</h1>
-        <table className='u-full-width'>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th style={{ textAlign: 'end' }}>Posts</th>
-            </tr>
-          </thead>
-          <tbody>
-            <Thread
-              name="Thread 1"
-              postCount={100}
-            />
-          </tbody>
-        </table>
+        <ListView
+          initData={[
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+            { name: 'Thread 1', postCount: 100 },
+          ]}
+          perPage={9}
+        >
+          <ListRows><Thread /></ListRows>
+          <Pagination className='pagination' />
+        </ListView>
       </div>
     )
   }
