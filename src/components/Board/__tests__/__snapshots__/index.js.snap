@@ -1,0 +1,217 @@
+exports[`test board is rendered correctly 1`] = `
+<div
+  className="twelve columns">
+  <h1>
+    Board
+  </h1>
+  <div>
+    <div
+      className={undefined}>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+      <div>
+        <div
+          className="row">
+          <a
+            className="ten columns"
+            href="#">
+            <h2
+              className="title">
+              Thread 1
+            </h2>
+          </a>
+          <span
+            className="two columns post-count">
+            100
+          </span>
+        </div>
+      </div>
+    </div>
+    <nav
+      className={undefined}>
+      <ul
+        className="pagination">
+        <li
+          className="disabled"
+          onClick={[Function]}>
+          <a
+            aria-label="Previous"
+            href="#"
+            onClick={[Function]}>
+            <span
+              aria-hidden="true">
+              «
+            </span>
+          </a>
+        </li>
+        <li
+          className="active"
+          onClick={[Function]}>
+          <a
+            aria-label="1"
+            href="#">
+            1
+          </a>
+        </li>
+        <li
+          className=""
+          onClick={[Function]}>
+          <a
+            aria-label={2}
+            href="#"
+            onClick={[Function]}>
+            2
+          </a>
+        </li>
+        <li
+          className=""
+          onClick={[Function]}>
+          <a
+            aria-label="Next"
+            href="#"
+            onClick={[Function]}>
+            <span
+              aria-hidden="true">
+              »
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+`;

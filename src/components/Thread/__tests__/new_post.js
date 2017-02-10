@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import NewPost, { parseText, rollDice } from './new_post'
+import NewPost, { parseText, rollDice } from '../new_post'
 
 test('new post is rendered', () => {
   const component = renderer.create(

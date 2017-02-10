@@ -10,10 +10,19 @@ exports[`test thread is rendered correctly 1`] = `
       </h3>
     </div>
     <div
-      className="nine columns">
-      <p>
-        Lorem Ipsum
-      </p>
+      className="nine columns"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>Lorem Ipsum</p>
+        ",
+        }
+      } />
+    <div
+      className="dice-hand">
+      <table
+        className="u-full-width">
+        <tbody />
+      </table>
     </div>
   </div>
   <div
@@ -25,10 +34,19 @@ exports[`test thread is rendered correctly 1`] = `
       </h3>
     </div>
     <div
-      className="nine columns">
-      <p>
-        Dolor set amet
-      </p>
+      className="nine columns"
+      dangerouslySetInnerHTML={
+        Object {
+          "__html": "<p>Dolor set amet</p>
+        ",
+        }
+      } />
+    <div
+      className="dice-hand">
+      <table
+        className="u-full-width">
+        <tbody />
+      </table>
     </div>
   </div>
   <hr />

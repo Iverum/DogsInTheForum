@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import { Thread }from './index'
+import { Thread } from '../index'
 
 test('thread is rendered correctly', () => {
   const component = renderer.create(
