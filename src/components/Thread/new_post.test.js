@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import Post from './post'
+import NewPost from './new_post'
 
-test('post is rendered with username and text', () => {
+test('new post is rendered', () => {
   const component = renderer.create(
-    <Post username="Anonymous" text="Lorem ipsum" />
+    <NewPost />
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

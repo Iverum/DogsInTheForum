@@ -4,7 +4,7 @@ import Post from './post'
 import NewPost from './new_post'
 import * as threadActions from './dux';
 
-class Thread extends Component {
+export class Thread extends Component {
 
   constructor(props) {
     super(props)

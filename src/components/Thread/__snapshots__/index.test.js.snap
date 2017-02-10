@@ -1,0 +1,49 @@
+exports[`test thread is rendered correctly 1`] = `
+<div
+  className="twelve columns">
+  <div
+    className="row">
+    <div
+      className="three columns">
+      <h3>
+        Anonymous
+      </h3>
+    </div>
+    <div
+      className="nine columns">
+      <p>
+        Lorem Ipsum
+      </p>
+    </div>
+  </div>
+  <div
+    className="row">
+    <div
+      className="three columns">
+      <h3>
+        Nonymous
+      </h3>
+    </div>
+    <div
+      className="nine columns">
+      <p>
+        Dolor set amet
+      </p>
+    </div>
+  </div>
+  <hr />
+  <div
+    className="row">
+    <textarea
+      className="u-full-width"
+      onChange={[Function]}
+      placeholder="I cast magic missile into the darkness!"
+      value="" />
+    <input
+      className="button-primary"
+      onClick={[Function]}
+      type="submit"
+      value="Submit" />
+  </div>
+</div>
+`;
