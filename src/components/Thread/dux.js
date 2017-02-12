@@ -1,5 +1,6 @@
 // Actions
-const ADD_POST = "ditf/threads/ADD_POST"
+const ADD_POST = 'ditf/threads/ADD_POST'
+const CLEAR_POSTS = 'ditf/threads/CLEAR_POSTS'
 
 // Reducer
 export default function reducer(state = {}, action = {}) {
@@ -11,6 +12,10 @@ export default function reducer(state = {}, action = {}) {
         ...state,
         [action.thread]: newPosts
       }
+    }
+
+    case CLEAR_POSTS: {
+      return {}
     }
 
     default: {
@@ -26,4 +31,8 @@ export function addPost(thread, post) {
     data: post,
     thread
   }
+}
+
+export function clear() {
+  return { type: CLEAR_POSTS }
 }

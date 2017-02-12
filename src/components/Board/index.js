@@ -31,6 +31,7 @@ export class Board extends Component {
   componentWillUnmount() {
     this.boardRef.off()
     this.boardRef = null
+    this.props.dispatch(boardActions.clear())
   }
 
   startCreatingThread() {

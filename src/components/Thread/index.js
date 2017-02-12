@@ -27,6 +27,7 @@ export class Thread extends Component {
   componentWillUnmount() {
     this.threadRef.off()
     this.threadRef = null
+    this.props.dispatch(threadActions.clear())
   }
 
   updateThreadFromDatabase(data) {
