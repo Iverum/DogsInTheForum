@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
+import uuid from 'uuid/v4'
 import './index.css'
 import Thread from './thread'
 import * as boardActions from './dux'
@@ -14,6 +15,7 @@ export class Board extends Component {
 
   createThread() {
     this.props.dispatch(boardActions.addThread({
+      uuid: uuid(),
       name: 'Thread Example',
       postCount: 0
     }))

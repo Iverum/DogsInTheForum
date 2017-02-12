@@ -16,6 +16,7 @@ export default class Thread extends Component {
 
 Thread.propTypes = {
   data: PropTypes.shape({
+    uuid: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     postCount: PropTypes.number.isRequired
   })
