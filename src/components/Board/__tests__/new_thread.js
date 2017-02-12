@@ -1,14 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import { Board } from '../index'
+import NewThread from '../new_thread'
 
-jest.mock('../../User')
-jest.mock('firebase')
-
-test('board is rendered correctly', () => {
+test('NewThread is rendered correctly', () => {
   const component = renderer.create(
-    <Board />
+    <NewThread />
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

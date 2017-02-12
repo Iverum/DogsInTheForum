@@ -1,6 +1,7 @@
 exports[`test board is rendered correctly 1`] = `
 <div
   className="twelve columns">
+  <noscript />
   <header
     className="row">
     <h1
