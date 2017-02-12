@@ -4,7 +4,6 @@ import { ListView, ListRows, Pagination } from 'react-list-combo'
 import firebase from 'firebase'
 import uuid from 'uuid/v4'
 import './index.css'
-import UserDetails from '../User'
 import Thread from './thread'
 import NewThread from './new_thread'
 import * as boardActions from './dux'
@@ -85,7 +84,6 @@ export class Board extends Component {
           <ListRows><Thread /></ListRows>
           <Pagination className='pagination' />
         </ListView>
-        <UserDetails />
       </div>
     )
   }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
+import { Link } from 'react-router'
 import * as userActions from './dux'
+import './index.css'
 
 export class UserDetails extends Component {
   constructor(props) {
@@ -19,9 +21,10 @@ export class UserDetails extends Component {
     if (!this.props.user.name) { return null }
 
     return (
-      <div className="row">
+      <div className="User">
+        <Link className="button">{this.props.user.name}</Link>
         <input
-          className="button-primary three columns"
+          className="button"
           type="button"
           value="Log out"
           onClick={this.logOut}

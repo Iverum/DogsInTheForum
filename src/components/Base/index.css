@@ -3,7 +3,10 @@
 }
 
 .Base>header {
+  align-items: flex-start;
   border-bottom: grey 1px solid;
+  display: flex;
+  justify-content: space-between;
 }
 
 .Base>header h1 {
