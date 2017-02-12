@@ -3,7 +3,8 @@ exports[`test thread is rendered correctly 1`] = `
   className="row">
   <a
     className="ten columns"
-    href="#">
+    onClick={[Function]}
+    style={Object {}}>
     <h2
       className="title">
       Test Thread

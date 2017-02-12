@@ -6,10 +6,13 @@ import { Thread } from '../index'
 test('thread is rendered correctly', () => {
   const component = renderer.create(
     <Thread
-      thread={[
-        { username: 'Anonymous', text: 'Lorem Ipsum' },
-        { username: 'Nonymous', text: 'Dolor set amet' }
-      ]}
+      params={{ uuid:'testUUID' }}
+      threads={{
+        'testUUID': [
+          { username: 'Anonymous', text: 'Lorem Ipsum' },
+          { username: 'Nonymous', text: 'Dolor set amet' }
+        ]
+      }}
     />
   )
   let tree = component.toJSON()
