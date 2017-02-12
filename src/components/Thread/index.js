@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './post'
 import NewPost from './new_post'
+import UserDetails from '../User'
 import * as threadActions from './dux'
 
 export class Thread extends Component {
@@ -32,15 +33,23 @@ export class Thread extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="twelve columns">
         {this.renderPosts()}
         <hr />
-        <NewPost onSubmit={this.createNewPost} />
+        <NewPost
+          user={this.props.user}
+          onSubmit={this.createNewPost}
+        />
+        <UserDetails />
       </div>
     )
   }
 
 }
 
-export default connect(state => ({ threads: state.threads }))(Thread)
+export default connect(state => ({
+  threads: state.threads,
+  user: state.user
+}))(Thread)

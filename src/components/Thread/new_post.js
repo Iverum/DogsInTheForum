@@ -60,7 +60,7 @@ export default class NewPost extends Component {
       const post = parseText(this.state.value)
       post.dice = rollDice(post)
       this.props.onSubmit({
-        username: 'Default User',
+        username: this.props.user.name,
         ...post
       })
       this.setState({ value: '' })
@@ -68,6 +68,8 @@ export default class NewPost extends Component {
   }
 
   render() {
+    if (!this.props.user.name) { return null }
+
     return (
       <div className="row">
         <textarea
@@ -84,5 +86,8 @@ export default class NewPost extends Component {
 }
 
 NewPost.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string
+  }).isRequired,
   onSubmit: PropTypes.func
 }
