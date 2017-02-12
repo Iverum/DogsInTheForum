@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Post from './post'
 import NewPost from './new_post'
-import * as threadActions from './dux';
+import * as threadActions from './dux'
 
 export class Thread extends Component {
 
