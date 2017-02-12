@@ -5,7 +5,9 @@ import NewPost, { parseText, rollDice } from '../new_post'
 
 test('new post is rendered', () => {
   const component = renderer.create(
-    <NewPost />
+    <NewPost
+      user={{ name: 'Test User' }}
+    />
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

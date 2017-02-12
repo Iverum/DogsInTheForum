@@ -2,7 +2,7 @@ exports[`test thread is rendered correctly 1`] = `
 <section
   className="row">
   <a
-    className="ten columns"
+    className="six columns"
     onClick={[Function]}
     style={Object {}}>
     <h2
@@ -10,6 +10,10 @@ exports[`test thread is rendered correctly 1`] = `
       Test Thread
     </h2>
   </a>
+  <span
+    className="four columns post-count">
+    created by 
+  </span>
   <span
     className="two columns post-count">
     0

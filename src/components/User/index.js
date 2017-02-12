@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import firebase from 'firebase'
 import * as userActions from './dux'
 
-class UserDetails extends Component {
+export class UserDetails extends Component {
   constructor(props) {
     super(props)
     this.logOut = this.logOut.bind(this)
