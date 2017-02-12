@@ -1,3 +1,3 @@
-import { UserDetails } from '../../User'
+import { UserDetails } from '../User'
 
 export default UserDetails
