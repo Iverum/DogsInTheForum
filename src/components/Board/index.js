@@ -1,27 +1,48 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
+import firebase from 'firebase'
 import uuid from 'uuid/v4'
 import './index.css'
 import UserDetails from '../User'
 import Thread from './thread'
 import * as boardActions from './dux'
 
+
 export class Board extends Component {
 
   constructor(props) {
     super(props)
+    this.updateThreadsFromDatabase = this.updateThreadsFromDatabase.bind(this)
     this.createThread = this.createThread.bind(this)
   }
 
+  componentWillMount() {
+    const database = firebase.database()
+    this.boardRef = database.ref('board')
+    this.boardRef.off()
+    this.boardRef.on('child_added', this.updateThreadsFromDatabase)
+    this.boardRef.on('child_changed', this.updateThreadsFromDatabase)
+  }
+
+  componentWillUnmount() {
+    this.boardRef.off()
+    this.boardRef = null
+  }
+
   createThread() {
-    const { dispatch, user } = this.props
-    dispatch(boardActions.addThread({
+    const newThread = {
       uuid: uuid(),
-      author: user.name,
+      author: this.props.user.name,
       name: 'Thread Example',
       postCount: 0
-    }))
+    }
+    this.boardRef.push(newThread)
+  }
+
+  updateThreadsFromDatabase(data) {
+    const thread = data.val()
+    this.props.dispatch(boardActions.addThread(thread))
   }
 
   render() {
