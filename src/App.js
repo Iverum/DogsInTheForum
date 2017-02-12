@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import firebase from 'firebase'
 import config from './config'
 import store from './store'
+import Base from './components/Base'
 import Board from './components/Board'
 import Thread from './components/Thread'
 import * as userActions from './components/User/dux'
@@ -28,15 +29,23 @@ class App extends Component {
       })
   }
 
+  router() {
+    return (
+      <Router history={history}>
+        <Route path="/" component={Base}>
+          <IndexRoute component={Board} />
+          <Route path="thread/:uuid" component={Thread} />
+        </Route>
+      </Router>
+    )
+  }
+
   render() {
     return (
       <div className="container">
         <div className="row">
           <Provider store={store}>
-            <Router history={history}>
-              <Route path="/" component={Board} />
-              <Route path="thread/:uuid" component={Thread} />
-            </Router>
+            {this.router()}
           </Provider>
         </div>
       </div>

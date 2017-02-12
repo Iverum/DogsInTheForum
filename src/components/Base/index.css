@@ -1,0 +1,15 @@
+.Base {
+  margin-top: 2.5rem;
+}
+
+.Base>header {
+  border-bottom: grey 1px solid;
+}
+
+.Base>header h1 {
+  font-size: 3rem;
+}
+
+.Base>section {
+  margin-top: 2.5rem;
+}
