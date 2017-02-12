@@ -20,11 +20,6 @@ class App extends Component {
       .then(result => {
         if (auth.currentUser) {
           store.dispatch(userActions.logIn({ name: auth.currentUser.displayName }))
-        } else {
-          var provider = new firebase.auth.GoogleAuthProvider();
-          provider.addScope('profile');
-          provider.addScope('email');
-          auth.signInWithRedirect(provider)
         }
       })
   }

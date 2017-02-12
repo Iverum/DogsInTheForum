@@ -8,7 +8,15 @@ import './index.css'
 export class UserDetails extends Component {
   constructor(props) {
     super(props)
+    this.logIn = this.logIn.bind(this)
     this.logOut = this.logOut.bind(this)
+  }
+
+  logIn() {
+    const provider = new firebase.auth.GoogleAuthProvider()
+    provider.addScope('profile')
+    provider.addScope('email')
+    firebase.auth().signInWithRedirect(provider)
   }
 
   logOut() {
@@ -18,7 +26,18 @@ export class UserDetails extends Component {
   }
 
   render() {
-    if (!this.props.user.name) { return null }
+    if (!this.props.user.name) {
+      return (
+        <div className="User">
+          <input
+            className="button"
+            type="button"
+            value="Log in"
+            onClick={this.logIn}
+          />
+        </div>
+      )
+    }
 
     return (
       <div className="User">
