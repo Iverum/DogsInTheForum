@@ -15,8 +15,10 @@ export class Board extends Component {
   }
 
   createThread() {
-    this.props.dispatch(boardActions.addThread({
+    const { dispatch, user } = this.props
+    dispatch(boardActions.addThread({
       uuid: uuid(),
+      author: user.name,
       name: 'Thread Example',
       postCount: 0
     }))
@@ -59,4 +61,7 @@ Board.propTypes = {
   }))
 }
 
-export default connect(state => ({ threads: state.board }))(Board)
+export default connect(state => ({
+  threads: state.board,
+  user: state.user
+}))(Board)

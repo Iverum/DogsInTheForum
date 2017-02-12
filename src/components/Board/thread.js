@@ -8,7 +8,8 @@ export default class Thread extends Component {
     const linkTo = `thread/${this.props.data.uuid}`
     return (
       <section className="row">
-        <Link to={linkTo} className='ten columns'><h2 className='title'>{this.props.data.name}</h2></Link>
+        <Link to={linkTo} className='six columns'><h2 className='title'>{this.props.data.name}</h2></Link>
+        <span className='four columns post-count'>created by {this.props.data.author}</span>
         <span className='two columns post-count'>{this.props.data.postCount} posts</span>
       </section>
     )
@@ -19,6 +20,7 @@ export default class Thread extends Component {
 Thread.propTypes = {
   data: PropTypes.shape({
     uuid: PropTypes.string.isRequired,
+    author: PropTypes.string.isREquired,
     name: PropTypes.string.isRequired,
     postCount: PropTypes.number.isRequired
   })
