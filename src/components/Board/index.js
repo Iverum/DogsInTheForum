@@ -1,38 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
-import Modal from 'react-modal'
 import firebase from 'firebase'
 import uuid from 'uuid/v4'
 import './index.css'
 import UserDetails from '../User'
 import Thread from './thread'
+import NewThread from './new_thread'
 import * as boardActions from './dux'
-
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
 
 export class Board extends Component {
 
   constructor(props) {
     super(props)
     this.updateThreadsFromDatabase = this.updateThreadsFromDatabase.bind(this)
-    this.createThread = this.createThread.bind(this)
     this.startCreatingThread = this.startCreatingThread.bind(this)
-    this.closeModal = this.closeModal.bind(this)
-    this.onThreadNameChange = this.onThreadNameChange.bind(this)
-    this.state = {
-      threadName: '',
-      creatingThread: false
-    }
+    this.createThread = this.createThread.bind(this)
+    this.endCreatingThread = this.endCreatingThread.bind(this)
+    this.state = { creatingThread: false }
   }
 
   componentWillMount() {
@@ -48,15 +33,26 @@ export class Board extends Component {
     this.boardRef = null
   }
 
-  createThread() {
+  startCreatingThread() {
+    this.setState({
+      creatingThread: true
+    })
+  }
+
+  createThread(name) {
     const newThread = {
       uuid: uuid(),
       author: this.props.user.name,
-      name: this.state.threadName,
+      name,
       postCount: 0
     }
     this.boardRef.push(newThread)
-    this.closeModal()
+  }
+
+  endCreatingThread() {
+    this.setState({
+      creatingThread: false
+    })
   }
 
   updateThreadsFromDatabase(data) {
@@ -64,55 +60,14 @@ export class Board extends Component {
     this.props.dispatch(boardActions.addThread(thread))
   }
 
-  startCreatingThread() {
-    this.setState({
-      creatingThread: true
-    })
-  }
-
-  closeModal() {
-    this.setState({
-      creatingThread: false,
-      threadName: ''
-    })
-  }
-
-  onThreadNameChange(e) {
-    this.setState({ threadName: e.target.value })
-  }
-
-  renderModal() {
-    return (
-      <Modal
-        contentLabel='New thread name?'
-        isOpen={this.state.creatingThread}
-        onRequestClose={this.closeModal}
-        style={customStyles}
-      >
-        <h1>Create New Thread</h1>
-        <label htmlFor="threadName">Thread name</label>
-        <input
-          className="u-full-width"
-          type="text"
-          placeholder="My awesome thread"
-          value={this.state.threadName}
-          onChange={this.onThreadNameChange}
-          id="threadName"
-        />
-        <input
-          className="button-primary u-full-width"
-          type="button"
-          value="Create Thread"
-          onClick={this.createThread}
-        />
-      </Modal>
-    )
-  }
-
   render() {
     return (
       <div className='twelve columns'>
-        {this.renderModal()}
+        <NewThread
+          isVisible={this.state.creatingThread}
+          onSubmit={this.createThread}
+          onRequestClose={this.endCreatingThread}
+        />
         <header className="row">
           <h1 className="nine columns">Board</h1>
           <input
