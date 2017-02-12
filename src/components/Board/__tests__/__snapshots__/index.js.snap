@@ -9,6 +9,7 @@ exports[`test board is rendered correctly 1`] = `
     </h1>
     <input
       className="button-primary three columns"
+      onClick={[Function]}
       type="button"
       value="Create Thread" />
   </header>

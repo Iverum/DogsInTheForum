@@ -1,16 +1,35 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
 import './index.css'
 import Thread from './thread'
+import * as boardActions from './dux'
 
-export default class Board extends Component {
+export class Board extends Component {
+
+  constructor(props) {
+    super(props)
+    this.createThread = this.createThread.bind(this)
+  }
+
+  createThread() {
+    this.props.dispatch(boardActions.addThread({
+      name: 'Thread Example',
+      postCount: 0
+    }))
+  }
 
   render() {
     return (
       <div className='twelve columns'>
         <header className="row">
           <h1 className="nine columns">Board</h1>
-          <input className="button-primary three columns" type="button" value="Create Thread" />
+          <input
+            className="button-primary three columns"
+            type="button"
+            value="Create Thread"
+            onClick={this.createThread}
+          />
         </header>
         <ListView
           initData={this.props.threads}
@@ -35,3 +54,5 @@ Board.propTypes = {
     postCount: PropTypes.number.isRequired
   }))
 }
+
+export default connect(state => ({ threads: state.board }))(Board)

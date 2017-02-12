@@ -1,11 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import { Board } from '../index'
+import Thread from '../thread'
 
-test('board is rendered correctly', () => {
+test('thread is rendered correctly', () => {
   const component = renderer.create(
-    <Board />
+    <Thread
+      data={{
+        name: 'Test Thread',
+        postCount: 0
+      }}
+    />
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

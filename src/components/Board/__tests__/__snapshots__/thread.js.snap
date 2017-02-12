@@ -1,0 +1,18 @@
+exports[`test thread is rendered correctly 1`] = `
+<section
+  className="row">
+  <a
+    className="ten columns"
+    href="#">
+    <h2
+      className="title">
+      Test Thread
+    </h2>
+  </a>
+  <span
+    className="two columns post-count">
+    0
+     posts
+  </span>
+</section>
+`;
