@@ -12,12 +12,16 @@ export class Thread extends Component {
   }
 
   createNewPost(post) {
-    this.props.dispatch(threadActions.addPost(post))
+    const { dispatch } = this.props
+    const { uuid } = this.props.params
+    dispatch(threadActions.addPost(uuid, post))
   }
 
   renderPosts() {
-    if (this.props.thread.length === 0) { return <p>There are no posts here yet!</p>}
-    return this.props.thread.map((post, i) => {
+    const { threads, params } = this.props
+    const thread = threads[params.uuid]
+    if (!thread || thread.length === 0) { return <p>There are no posts here yet!</p>}
+    return thread.map((post, i) => {
       return (
         <Post
           key={i}
@@ -39,4 +43,4 @@ export class Thread extends Component {
 
 }
 
-export default connect(state => ({ thread: state.thread }))(Thread)
+export default connect(state => ({ threads: state.threads }))(Thread)

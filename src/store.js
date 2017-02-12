@@ -4,7 +4,7 @@ import threadReducer from './components/Thread/dux'
 import boardReducer from './components/Board/dux'
 
 const rootReducer = combineReducers({
-  thread: threadReducer,
+  threads: threadReducer,
   board: boardReducer,
   routing: routerReducer
 })

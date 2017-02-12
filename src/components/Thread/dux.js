@@ -2,10 +2,15 @@
 const ADD_POST = "ditf/threads/ADD_POST"
 
 // Reducer
-export default function reducer(state = [], action = {}) {
+export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case ADD_POST: {
-      return [...state, action.data]
+      const currentPosts = state[action.thread] || []
+      const newPosts = [...currentPosts, action.data]
+      return {
+        ...state,
+        [action.thread]: newPosts
+      }
     }
 
     default: {
@@ -15,9 +20,10 @@ export default function reducer(state = [], action = {}) {
 }
 
 // Action creators
-export function addPost(post) {
+export function addPost(thread, post) {
   return {
     type: ADD_POST,
-    data: post
+    data: post,
+    thread
   }
 }
