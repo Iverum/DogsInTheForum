@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import firebase from 'firebase'
 import Post from './post'
 import NewPost from './new_post'
 import UserDetails from '../User'
@@ -10,12 +11,32 @@ export class Thread extends Component {
   constructor(props) {
     super(props)
     this.createNewPost = this.createNewPost.bind(this)
+    this.updateThreadFromDatabase = this.updateThreadFromDatabase.bind(this)
+  }
+
+  componentWillMount() {
+    const uuid = this.props.params.uuid
+    const database = firebase.database()
+    const threadPath = `threads/${uuid}`
+    this.threadRef = database.ref(threadPath)
+    this.threadRef.off()
+    this.threadRef.on('child_added', this.updateThreadFromDatabase)
+    this.threadRef.on('child_changed', this.updateThreadFromDatabase)
+  }
+
+  componentWillUnmount() {
+    this.threadRef.off()
+    this.threadRef = null
+  }
+
+  updateThreadFromDatabase(data) {
+    const uuid = this.props.params.uuid
+    const post = data.val()
+    this.props.dispatch(threadActions.addPost(uuid, post))
   }
 
   createNewPost(post) {
-    const { dispatch } = this.props
-    const { uuid } = this.props.params
-    dispatch(threadActions.addPost(uuid, post))
+    this.threadRef.push(post)
   }
 
   renderPosts() {
@@ -33,7 +54,6 @@ export class Thread extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="twelve columns">
         {this.renderPosts()}
