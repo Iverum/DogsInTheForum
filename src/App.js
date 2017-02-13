@@ -12,6 +12,7 @@ import Board from './components/Board'
 import Thread from './components/Thread'
 import User from './components/User'
 import Characters from './components/Character'
+import CharacterDetails from './components/Character/details'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -34,6 +35,7 @@ class App extends Component {
           <IndexRoute component={Board} />
           <Route path="thread/:uuid" component={Thread} />
           <Route path="characters" component={Characters} />
+          <Route path="characters/:uuid" component={CharacterDetails} />
           <Route path="user" component={User} />
         </Route>
       </Router>
