@@ -16,16 +16,16 @@ export class Thread extends Component {
   componentWillMount() {
     const uuid = this.props.params.uuid
     const database = firebase.database()
-    const threadPath = `threads/${uuid}`
-    this.threadRef = database.ref(threadPath)
-    this.threadRef.off()
-    this.threadRef.on('child_added', this.updateThreadFromDatabase)
-    this.threadRef.on('child_changed', this.updateThreadFromDatabase)
+    const postPath = `threads/${uuid}`
+    this.postRef = database.ref(postPath)
+    this.postRef.off()
+    this.postRef.on('child_added', this.updateThreadFromDatabase)
+    this.postRef.on('child_changed', this.updateThreadFromDatabase)
   }
 
   componentWillUnmount() {
-    this.threadRef.off()
-    this.threadRef = null
+    this.postRef.off()
+    this.postRef = null
     this.props.dispatch(threadActions.clear())
   }
 
@@ -36,7 +36,7 @@ export class Thread extends Component {
   }
 
   createNewPost(post) {
-    this.threadRef.push(post)
+    this.postRef.push(post)
   }
 
   renderPosts() {
