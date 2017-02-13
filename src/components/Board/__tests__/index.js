@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
 import { Board } from '../index'
 
-jest.mock('../../User')
 jest.mock('firebase')
 
 test('board is rendered correctly', () => {
