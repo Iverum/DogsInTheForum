@@ -5,11 +5,13 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import firebase from 'firebase'
 import config from './config'
 import store from './store'
+import * as userActions from './components/User/dux'
+
 import Base from './components/Base'
 import Board from './components/Board'
 import Thread from './components/Thread'
 import User from './components/User'
-import * as userActions from './components/User/dux'
+import Characters from './components/Character'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
@@ -31,6 +33,7 @@ class App extends Component {
         <Route path="/" component={Base}>
           <IndexRoute component={Board} />
           <Route path="thread/:uuid" component={Thread} />
+          <Route path="characters" component={Characters} />
           <Route path="user" component={User} />
         </Route>
       </Router>

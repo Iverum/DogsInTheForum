@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Characters from '../Character'
 
 export class User extends Component {
 
@@ -7,6 +8,10 @@ export class User extends Component {
     return (
       <div className="twelve columns">
         <h1>{this.props.user.name}</h1>
+        <hr />
+        <div className='row'>
+          <Characters />
+        </div>
       </div>
     )
   }
