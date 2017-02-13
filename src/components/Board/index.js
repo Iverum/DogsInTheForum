@@ -21,7 +21,7 @@ export class Board extends Component {
 
   componentWillMount() {
     const database = firebase.database()
-    this.boardRef = database.ref('board')
+    this.boardRef = database.ref('threads')
     this.boardRef.off()
     this.boardRef.on('child_added', this.updateThreadsFromDatabase)
     this.boardRef.on('child_changed', this.updateThreadsFromDatabase)
@@ -46,7 +46,7 @@ export class Board extends Component {
       name,
       postCount: 0
     }
-    this.boardRef.push(newThread)
+    firebase.database().ref(`threads/${newThread.uuid}`).set(newThread)
   }
 
   endCreatingThread() {
