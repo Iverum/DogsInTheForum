@@ -1,0 +1,16 @@
+exports[`test user menu is rendered correctly 1`] = `
+<div
+  className="User">
+  <a
+    className="button"
+    onClick={[Function]}
+    style={Object {}}>
+    Test User
+  </a>
+  <input
+    className="button"
+    onClick={[Function]}
+    type="button"
+    value="Log out" />
+</div>
+`;

@@ -1,0 +1,25 @@
+exports[`test menu is rendered correctly 1`] = `
+<header>
+  <a
+    onClick={[Function]}
+    style={Object {}}>
+    <h1>
+      Dogs in the Forum
+    </h1>
+  </a>
+  <div
+    className="User">
+    <a
+      className="button"
+      onClick={[Function]}
+      style={Object {}}>
+      Test User
+    </a>
+    <input
+      className="button"
+      onClick={[Function]}
+      type="button"
+      value="Log out" />
+  </div>
+</header>
+`;

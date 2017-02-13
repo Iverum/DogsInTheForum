@@ -1,0 +1,8 @@
+exports[`test user detail is rendered correctly 1`] = `
+<div
+  className="twelve columns">
+  <h1>
+    Test User
+  </h1>
+</div>
+`;

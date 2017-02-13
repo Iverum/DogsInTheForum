@@ -1,0 +1,7 @@
+exports[`test base is rendered correctly 1`] = `
+<div
+  className="Base row">
+  <section
+    className="row" />
+</div>
+`;
