@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
-import UserDetails from '../User'
+import { connect } from 'react-redux'
+import UserMenu from '../User/menu'
 
-export default class Menu extends Component {
+export class Menu extends Component {
 
   render() {
     return (
       <header clasName='row'>
         <h1>Dogs in the Forum</h1>
-        <UserDetails />
+        <UserMenu user={this.props.user} />
       </header>
     )
   }
 
 }
+
+export default connect(state => ({user: state.user}))(Menu)

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
 import { Link } from 'react-router'
 import * as userActions from './dux'
-import './index.css'
+import './menu.css'
 
-export class UserDetails extends Component {
+export default class UserMenu extends Component {
   constructor(props) {
     super(props)
     this.logIn = this.logIn.bind(this)
@@ -54,4 +54,8 @@ export class UserDetails extends Component {
 
 }
 
-export default connect(state => ({user: state.user}))(UserDetails)
+UserMenu.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired
+  }).isRequired
+}

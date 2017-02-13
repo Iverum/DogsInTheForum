@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import firebase from 'firebase'
 import Post from './post'
 import NewPost from './new_post'
-import UserDetails from '../User'
 import * as threadActions from './dux'
 
 export class Thread extends Component {
@@ -63,7 +62,6 @@ export class Thread extends Component {
           user={this.props.user}
           onSubmit={this.createNewPost}
         />
-        <UserDetails />
       </div>
     )
   }
