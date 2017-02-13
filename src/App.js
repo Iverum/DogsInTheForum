@@ -8,6 +8,7 @@ import store from './store'
 import Base from './components/Base'
 import Board from './components/Board'
 import Thread from './components/Thread'
+import User from './components/User'
 import * as userActions from './components/User/dux'
 
 const history = syncHistoryWithStore(browserHistory, store)
@@ -30,6 +31,7 @@ class App extends Component {
         <Route path="/" component={Base}>
           <IndexRoute component={Board} />
           <Route path="thread/:uuid" component={Thread} />
+          <Route path="user" component={User} />
         </Route>
       </Router>
     )

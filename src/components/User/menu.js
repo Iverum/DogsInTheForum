@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
 import firebase from 'firebase'
 import { Link } from 'react-router'
 import * as userActions from './dux'
@@ -41,7 +40,7 @@ export default class UserMenu extends Component {
 
     return (
       <div className="User">
-        <Link className="button">{this.props.user.name}</Link>
+        <Link className="button" to='user'>{this.props.user.name}</Link>
         <input
           className="button"
           type="button"
@@ -56,6 +55,6 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired
+    name: PropTypes.string
   }).isRequired
 }
