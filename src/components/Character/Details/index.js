@@ -9,7 +9,15 @@ import Belongings from './belongings'
 const emptyCharacter = {
   name: '',
   description: '',
-  background: ''
+  background: 'Well-Rounded'
+}
+
+const backgrounds = {
+  'Well-Rounded': {},
+  'Strong History': {},
+  'Complicated History': {},
+  'Strong Community': {},
+  'Complicated Community': {}
 }
 
 export default class CharacterDetails extends Component {
@@ -54,7 +62,11 @@ export default class CharacterDetails extends Component {
     console.log(this.state.character)
     return (
       <form className='twelve columns'>
-        <BasicInfo {...this.state} onChange={this.changeProperty}  />
+        <BasicInfo
+          {...this.state}
+          onChange={this.changeProperty}
+          backgrounds={backgrounds}
+        />
         <hr />
         <div className='row'>
           <Stats {...this.state} />

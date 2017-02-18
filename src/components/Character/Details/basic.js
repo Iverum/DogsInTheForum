@@ -31,20 +31,21 @@ export default class BasicInfo extends Component {
   }
 
   renderBackground(wrapperClass = 'row') {
-    // TODO make this a dropdown
     return (
       <div className={wrapperClass}>
         <label htmlFor='characterBackground'>Background</label>
-        <input
-          className='u-full-width'
-          type='text'
-          placeholder='Well Rounded'
+        <select
           id='characterBackground'
+          className='u-full-width'
           value={this.state.character.background}
           onChange={event => {
             this.props.onChange('background', event.target.value)
           }}
-        />
+        >
+          {Object.keys(this.props.backgrounds).map(background => {
+            return <option key={background} value={background}>{background}</option>
+          })}
+        </select>
       </div>
     )
   }
