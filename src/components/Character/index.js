@@ -40,7 +40,13 @@ export class Character extends Component {
   createCharacter(name) {
     const newCharacter = {
       uuid: uuid(),
-      name: 'New Character'
+      name: 'New Character',
+      stats: {
+        'Acuity': { number: 2, size: 'd6' },
+        'Body': { number: 2, size: 'd6' },
+        'Heart': { number: 2, size: 'd6' },
+        'Will': { number: 2, size: 'd6' }
+      }
     }
     this.characterRef.child(`${newCharacter.uuid}`).set(newCharacter)
   }

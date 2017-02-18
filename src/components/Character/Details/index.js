@@ -13,11 +13,69 @@ const emptyCharacter = {
 }
 
 const backgrounds = {
-  'Well-Rounded': {},
-  'Strong History': {},
-  'Complicated History': {},
-  'Strong Community': {},
-  'Complicated Community': {}
+  'Well-Rounded': {
+    'stats': [{ size: 'd6', number: 17 }],
+    'traits': [
+      { size: 'd4', number: 1 },
+      { size: 'd6', number: 4 },
+      { size: 'd8', number: 2 }
+    ],
+    'relationships': [
+      { size: 'd6', number: 4 },
+      { size: 'd8', number: 2 }
+    ]
+  },
+  'Strong History': {
+    'stats': [{ size: 'd6', number: 13 }],
+    'traits': [
+      { size: 'd6', number: 3 },
+      { size: 'd8', number: 4 },
+      { size: 'd10', number: 3 }
+    ],
+    'relationships': [
+      { size: 'd4', number: 1 },
+      { size: 'd6', number: 3 },
+      { size: 'd8', number: 2 }
+    ]
+  },
+  'Complicated History': {
+    'stats': [{ size: 'd6', number: 15 }],
+    'traits': [
+      { size: 'd4', number: 4 },
+      { size: 'd6', number: 2 },
+      { size: 'd10', number: 2 }
+    ],
+    'relationships': [
+      { size: 'd6', number: 5 },
+      { size: 'd8', number: 2 }
+    ]
+  },
+  'Strong Community': {
+    'stats': [{ size: 'd6', number: 13 }],
+    'traits': [
+      { size: 'd4', number: 1 },
+      { size: 'd6', number: 3 },
+      { size: 'd8', number: 2 }
+    ],
+    'relationships': [
+      { size: 'd6', number: 4 },
+      { size: 'd8', number: 4 },
+      { size: 'd10', number: 3 }
+    ]
+  },
+  'Complicated Community': {
+    'stats': [{ size: 'd6', number: 15 }],
+    'traits': [
+      { size: 'd6', number: 6 },
+      { size: 'd8', number: 2 }
+    ],
+    'relationships': [
+      { size: 'd4', number: 4 },
+      { size: 'd6', number: 2 },
+      { size: 'd8', number: 2 },
+      { size: 'd10', number: 2 }
+    ]
+  }
 }
 
 export default class CharacterDetails extends Component {
@@ -59,7 +117,6 @@ export default class CharacterDetails extends Component {
   }
 
   render() {
-    console.log(this.state.character)
     return (
       <form className='twelve columns'>
         <BasicInfo
@@ -69,7 +126,10 @@ export default class CharacterDetails extends Component {
         />
         <hr />
         <div className='row'>
-          <Stats {...this.state} />
+          <Stats
+            {...this.state.character.stats}
+            background={backgrounds[this.state.character.background]}
+          />
           <Traits {...this.state} />
         </div>
         <hr />
