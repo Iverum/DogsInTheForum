@@ -1,20 +1,50 @@
 import React, { Component } from 'react'
 
 export default class BasicInfo extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { character: this.props.character }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      character: nextProps.character
+    })
+  }
+
   renderName(wrapperClass = 'row') {
     return (
       <div className={wrapperClass}>
         <label htmlFor='characterName'>Name</label>
-        <input className='u-full-width' type='text' placeholder='John Doe' id='characterName' />
+        <input
+          className='u-full-width'
+          type='text'
+          placeholder='John Doe'
+          id='characterName'
+          value={this.state.character.name}
+          onChange={event => {
+            this.props.onChange('name', event.target.value)
+          }}
+        />
       </div>
     )
   }
 
   renderBackground(wrapperClass = 'row') {
+    // TODO make this a dropdown
     return (
       <div className={wrapperClass}>
         <label htmlFor='characterBackground'>Background</label>
-        <input className='u-full-width' type='text' placeholder='Well Rounded' id='characterBackground' />
+        <input
+          className='u-full-width'
+          type='text'
+          placeholder='Well Rounded'
+          id='characterBackground'
+          value={this.state.character.background}
+          onChange={event => {
+            this.props.onChange('background', event.target.value)
+          }}
+        />
       </div>
     )
   }
@@ -23,7 +53,15 @@ export default class BasicInfo extends Component {
     return (
       <div className={wrapperClass}>
         <label htmlFor='characterDescription'>Description</label>
-        <textarea className='u-full-width' placeholder='Very average' id='characterDescription'></textarea>
+        <textarea
+          className='u-full-width'
+          placeholder='Very average'
+          id='characterDescription'
+          value={this.state.character.description}
+          onChange={event => {
+            this.props.onChange('description', event.target.value)
+          }}
+        ></textarea>
       </div>
     )
   }
