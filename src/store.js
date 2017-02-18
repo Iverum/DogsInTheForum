@@ -3,11 +3,13 @@ import { routerReducer } from 'react-router-redux'
 import threadReducer from './components/Thread/dux'
 import boardReducer from './components/Board/dux'
 import userReducer from './components/User/dux'
+import characterReducer from './components/Character/dux'
 
 const rootReducer = combineReducers({
   threads: threadReducer,
   board: boardReducer,
   user: userReducer,
+  characters: characterReducer,
   routing: routerReducer
 })
 const store = createStore(rootReducer)
