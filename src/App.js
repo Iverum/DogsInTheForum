@@ -12,7 +12,7 @@ import Board from './components/Board'
 import Thread from './components/Thread'
 import User from './components/User'
 import Characters from './components/Character'
-import CharacterDetails from './components/Character/details'
+import CharacterDetails from './components/Character/Details'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
