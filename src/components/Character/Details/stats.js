@@ -104,31 +104,64 @@ export default class Stats extends Component {
         <div className='row'>
           <label className='two columns' htmlFor='statBody'>Body</label>
           <input
-            className='ten columns'
+            className={cn({
+              'ten columns': true,
+              'error': _.includes(errors, 'Body')
+            })}
             type='text'
             placeholder='2d6'
             id='statBody'
             value={this.getStatString(this.state.Body)}
+            onChange={event => {
+              this.setState({
+                Body: event.target.value
+              })
+            }}
+            onBlur={event => {
+              this.changeStat('Body', event.target.value)
+            }}
           />
         </div>
         <div className='row'>
           <label className='two columns' htmlFor='statHeart'>Heart</label>
           <input
-            className='ten columns'
+            className={cn({
+              'ten columns': true,
+              'error': _.includes(errors, 'Heart')
+            })}
             type='text'
             placeholder='2d6'
             id='statHeart'
             value={this.getStatString(this.state.Heart)}
+            onChange={event => {
+              this.setState({
+                Heart: event.target.value
+              })
+            }}
+            onBlur={event => {
+              this.changeStat('Heart', event.target.value)
+            }}
           />
         </div>
         <div className='row'>
           <label className='two columns' htmlFor='statWill'>Will</label>
           <input
-            className='ten columns'
+            className={cn({
+              'ten columns': true,
+              'error': _.includes(errors, 'Will')
+            })}
             type='text'
             placeholder='2d6'
             id='statWill'
             value={this.getStatString(this.state.Will)}
+            onChange={event => {
+              this.setState({
+                Will: event.target.value
+              })
+            }}
+            onBlur={event => {
+              this.changeStat('Will', event.target.value)
+            }}
           />
         </div>
       </div>
