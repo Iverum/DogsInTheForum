@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 export default class Stats extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ export default class Stats extends Component {
       Acuity: props.Acuity,
       Body: props.Body,
       Heart: props.Heart,
-      Will: props.Will
+      Will: props.Will,
+      errors: []
     }
   }
 
@@ -48,11 +50,19 @@ export default class Stats extends Component {
 
   changeStat(stat, newValue) {
     const match = this.diceRegExp.exec(newValue)
+    let errors = [...this.state.errors]
     if (match === null) {
-      // TODO show a validation error
+      this.setState({
+        errors: _.uniq([...errors, stat])
+      })
     } else {
+      errors = _.filter(errors, stat)
+      this.setState({ errors })
+      if (errors.length !== 0) { return }
+      const currentStats = { ...this.state }
+      delete currentStats.errors
       const newStats = {
-        ...this.state,
+        ...currentStats,
         [stat]: {
           number: parseInt(match[1], 10) || 1,
           size: this.statDiceSize
@@ -63,6 +73,7 @@ export default class Stats extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className={this.props.className}>
         <h2>Stats</h2>
