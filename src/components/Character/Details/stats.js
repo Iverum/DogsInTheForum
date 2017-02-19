@@ -1,22 +1,44 @@
 import React, { Component } from 'react'
 
 export default class Stats extends Component {
+  constructor(props) {
+    super(props)
+    this.statDiceSize = this.props.backgroundStats.size
+    this.diceRegExp = new RegExp(`(\d*)${this.statDiceSize}`)
+    this.state = {
+      Acuity: props.Acuity,
+      Body: props.Body,
+      Heart: props.Heart,
+      Will: props.Will
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.statDiceSize = nextProps.backgroundStats.size
+    this.diceRegExp = new RegExp(`(\d*)${this.statDiceSize}`)
+    this.setState({
+      Acuity: nextProps.Acuity,
+      Body: nextProps.Body,
+      Heart: nextProps.Heart,
+      Will: nextProps.Will
+    })
+  }
+
   getStatString(stat) {
     if (!stat) { return '' }
     return `${stat.number}${stat.size}`
   }
 
   getRemainingStatDice() {
-    const backgroundStatDice = this.props.background.stats[0]
-    const statDiceSize = backgroundStatDice.size
-    const { Acuity, Body, Heart, Will } = this.props
+    const backgroundStatDiceCount = this.props.backgroundStats.number
+    const { Acuity, Body, Heart, Will } = this.state
     let assignedStatDice = 0
     if (Acuity) { assignedStatDice += Acuity.number }
     if (Body) { assignedStatDice += Body.number }
     if (Heart) { assignedStatDice += Heart.number }
     if (Will) { assignedStatDice += Will.number }
-    const remainingStatDice = backgroundStatDice.number - assignedStatDice
-    return `${remainingStatDice}${statDiceSize} left to assign`
+    const remainingStatDice = backgroundStatDiceCount - assignedStatDice
+    return `${remainingStatDice}${this.statDiceSize} left to assign`
   }
 
   render() {
@@ -32,7 +54,7 @@ export default class Stats extends Component {
             type='text'
             placeholder='2d6'
             id='statAcuity'
-            value={this.getStatString(this.props.Acuity)}
+            value={this.getStatString(this.state.Acuity)}
           />
         </div>
         <div className='row'>
@@ -42,7 +64,7 @@ export default class Stats extends Component {
             type='text'
             placeholder='2d6'
             id='statBody'
-            value={this.getStatString(this.props.Body)}
+            value={this.getStatString(this.state.Body)}
           />
         </div>
         <div className='row'>
@@ -52,7 +74,7 @@ export default class Stats extends Component {
             type='text'
             placeholder='2d6'
             id='statHeart'
-            value={this.getStatString(this.props.Heart)}
+            value={this.getStatString(this.state.Heart)}
           />
         </div>
         <div className='row'>
@@ -62,7 +84,7 @@ export default class Stats extends Component {
             type='text'
             placeholder='2d6'
             id='statWill'
-            value={this.getStatString(this.props.Will)}
+            value={this.getStatString(this.state.Will)}
           />
         </div>
       </div>

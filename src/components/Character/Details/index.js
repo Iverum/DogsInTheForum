@@ -14,7 +14,7 @@ const emptyCharacter = {
 
 const backgrounds = {
   'Well-Rounded': {
-    'stats': [{ size: 'd6', number: 17 }],
+    'stats': { size: 'd6', number: 17 },
     'traits': [
       { size: 'd4', number: 1 },
       { size: 'd6', number: 4 },
@@ -26,7 +26,7 @@ const backgrounds = {
     ]
   },
   'Strong History': {
-    'stats': [{ size: 'd6', number: 13 }],
+    'stats': { size: 'd6', number: 13 },
     'traits': [
       { size: 'd6', number: 3 },
       { size: 'd8', number: 4 },
@@ -39,7 +39,7 @@ const backgrounds = {
     ]
   },
   'Complicated History': {
-    'stats': [{ size: 'd6', number: 15 }],
+    'stats': { size: 'd6', number: 15 },
     'traits': [
       { size: 'd4', number: 4 },
       { size: 'd6', number: 2 },
@@ -51,7 +51,7 @@ const backgrounds = {
     ]
   },
   'Strong Community': {
-    'stats': [{ size: 'd6', number: 13 }],
+    'stats': { size: 'd6', number: 13 },
     'traits': [
       { size: 'd4', number: 1 },
       { size: 'd6', number: 3 },
@@ -64,7 +64,7 @@ const backgrounds = {
     ]
   },
   'Complicated Community': {
-    'stats': [{ size: 'd6', number: 15 }],
+    'stats': { size: 'd6', number: 15 },
     'traits': [
       { size: 'd6', number: 6 },
       { size: 'd8', number: 2 }
@@ -128,7 +128,8 @@ export default class CharacterDetails extends Component {
         <div className='row'>
           <Stats
             {...this.state.character.stats}
-            background={backgrounds[this.state.character.background]}
+            backgroundStats={backgrounds[this.state.character.background].stats}
+            onChange={this.changeProperty}
           />
           <Traits {...this.state} />
         </div>
