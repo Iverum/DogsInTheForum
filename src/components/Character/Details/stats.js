@@ -172,9 +172,24 @@ export default class Stats extends Component {
 }
 
 Stats.defaultProps = {
-  className: 'six columns'
+  className: 'six columns',
+  Acuity: { size: 'd6', number: 2 },
+  Body: { size: 'd6', number: 2 },
+  Heart: { size: 'd6', number: 2 },
+  Will: { size: 'd6', number: 2 }
 }
 
+const statShape = React.PropTypes.shape({
+  size: React.PropTypes.oneOf(['d6']).isRequired,
+  number: React.PropTypes.number.isRequired
+}).isRequired
+
 Stats.propTypes = {
-  className: React.PropTypes.string
+  className: React.PropTypes.string,
+  backgroundStats: statShape,
+  onChange: React.PropTypes.func.isRequired,
+  Acuity: statShape,
+  Body: statShape,
+  Heart: statShape,
+  Will: statShape
 }
