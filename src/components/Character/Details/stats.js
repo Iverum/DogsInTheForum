@@ -4,7 +4,7 @@ export default class Stats extends Component {
   constructor(props) {
     super(props)
     this.statDiceSize = this.props.backgroundStats.size
-    this.diceRegExp = new RegExp(`(\d*)${this.statDiceSize}`)
+    this.diceRegExp = new RegExp(`(\\d*)${this.statDiceSize}`)
     this.state = {
       Acuity: props.Acuity,
       Body: props.Body,
@@ -15,7 +15,7 @@ export default class Stats extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.statDiceSize = nextProps.backgroundStats.size
-    this.diceRegExp = new RegExp(`(\d*)${this.statDiceSize}`)
+    this.diceRegExp = new RegExp(`(\\d*)${this.statDiceSize}`)
     this.setState({
       Acuity: nextProps.Acuity,
       Body: nextProps.Body,
@@ -26,23 +26,43 @@ export default class Stats extends Component {
 
   getStatString(stat) {
     if (!stat) { return '' }
-    return `${stat.number}${stat.size}`
+    if (typeof stat === 'string') {
+      return stat
+    } else if (stat instanceof Object) {
+      return `${stat.number}${stat.size}`
+    }
+    return ''
   }
 
   getRemainingStatDice() {
     const backgroundStatDiceCount = this.props.backgroundStats.number
     const { Acuity, Body, Heart, Will } = this.state
     let assignedStatDice = 0
-    if (Acuity) { assignedStatDice += Acuity.number }
-    if (Body) { assignedStatDice += Body.number }
-    if (Heart) { assignedStatDice += Heart.number }
-    if (Will) { assignedStatDice += Will.number }
+    if (Acuity instanceof Object) { assignedStatDice += Acuity.number }
+    if (Body instanceof Object) { assignedStatDice += Body.number }
+    if (Heart instanceof Object) { assignedStatDice += Heart.number }
+    if (Will instanceof Object) { assignedStatDice += Will.number }
     const remainingStatDice = backgroundStatDiceCount - assignedStatDice
     return `${remainingStatDice}${this.statDiceSize} left to assign`
   }
 
-  render() {
+  changeStat(stat, newValue) {
+    const match = this.diceRegExp.exec(newValue)
+    if (match === null) {
+      // TODO show a validation error
+    } else {
+      const newStats = {
+        ...this.state,
+        [stat]: {
+          number: parseInt(match[1], 10) || 1,
+          size: this.statDiceSize
+        }
+      }
+      this.props.onChange('stats', newStats)
+    }
+  }
 
+  render() {
     return (
       <div className={this.props.className}>
         <h2>Stats</h2>
@@ -55,6 +75,14 @@ export default class Stats extends Component {
             placeholder='2d6'
             id='statAcuity'
             value={this.getStatString(this.state.Acuity)}
+            onChange={event => {
+              this.setState({
+                Acuity: event.target.value
+              })
+            }}
+            onBlur={event => {
+              this.changeStat('Acuity', event.target.value)
+            }}
           />
         </div>
         <div className='row'>
