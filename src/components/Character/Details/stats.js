@@ -78,8 +78,10 @@ export default class Stats extends Component {
     const { errors } = this.state
     return (
       <div className={this.props.className}>
-        <h2>Stats</h2>
-        <p>{this.getRemainingStatDice()}</p>
+        <div className='row'>
+          <h2 className='three columns'>Stats</h2>
+          <aside className='nine columns'>{this.getRemainingStatDice()}</aside>
+        </div>
         <div className='row'>
           <label className='two columns' htmlFor='statAcuity'>Acuity</label>
           <input
