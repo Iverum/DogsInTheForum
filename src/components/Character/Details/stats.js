@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
+import cn from 'classnames'
 
 export default class Stats extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ export default class Stats extends Component {
       Acuity: nextProps.Acuity,
       Body: nextProps.Body,
       Heart: nextProps.Heart,
-      Will: nextProps.Will
+      Will: nextProps.Will,
+      errors: []
     })
   }
 
@@ -73,7 +75,7 @@ export default class Stats extends Component {
   }
 
   render() {
-    console.log(this.state)
+    const { errors } = this.state
     return (
       <div className={this.props.className}>
         <h2>Stats</h2>
@@ -81,7 +83,10 @@ export default class Stats extends Component {
         <div className='row'>
           <label className='two columns' htmlFor='statAcuity'>Acuity</label>
           <input
-            className='ten columns'
+            className={cn({
+              'ten columns': true,
+              'error': _.includes(errors, 'Acuity')
+            })}
             type='text'
             placeholder='2d6'
             id='statAcuity'

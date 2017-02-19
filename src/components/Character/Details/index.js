@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
+import './index.css'
 import BasicInfo from './basic'
 import Stats from './stats'
 import Traits from './traits'
