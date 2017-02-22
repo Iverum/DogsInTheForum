@@ -132,7 +132,11 @@ export default class CharacterDetails extends Component {
             backgroundStats={backgrounds[this.state.character.background].stats}
             onChange={this.changeProperty}
           />
-          <Traits {...this.state} />
+          <Traits
+            {...this.state.character.traits}
+            traitDice={backgrounds[this.state.character.background].traits}
+            onChange={this.changeProperty}
+          />
         </div>
         <hr />
         <Relationships {...this.state} />
