@@ -4,5 +4,8 @@ exports[`test user detail is rendered correctly 1`] = `
   <h1>
     Test User
   </h1>
+  <hr />
+  <div
+    className="row" />
 </div>
 `;

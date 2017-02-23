@@ -1,0 +1,41 @@
+exports[`test character is rendered correctly 1`] = `
+<div
+  className="twelve columns">
+  <header
+    className="row">
+    <h1
+      className="nine columns">
+      Characters
+    </h1>
+    <input
+      className="button-primary three columns"
+      onClick={[Function]}
+      type="button"
+      value="Create New Character" />
+  </header>
+  <div
+    className="row">
+    <div>
+      <div
+        className={undefined}>
+        <div>
+          <a
+            className="button u-full-width"
+            onClick={[Function]}
+            style={Object {}}>
+            Test Character
+          </a>
+        </div>
+        <div>
+          <a
+            className="button u-full-width"
+            onClick={[Function]}
+            style={Object {}}>
+            Test Character 2
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

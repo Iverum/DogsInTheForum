@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer'
 import { User } from '../index'
 
 jest.mock('firebase')
+jest.mock('../../Character')
 
 test('user detail is rendered correctly', () => {
   const component = renderer.create(

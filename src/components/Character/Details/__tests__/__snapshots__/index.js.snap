@@ -1,0 +1,214 @@
+exports[`test character details are rendered correctly 1`] = `
+<form
+  className="twelve columns">
+  <div
+    className="row">
+    <div
+      className="six columns">
+      <div
+        className="row">
+        <label
+          htmlFor="characterName">
+          Name
+        </label>
+        <input
+          className="u-full-width"
+          id="characterName"
+          onChange={[Function]}
+          placeholder="John Doe"
+          type="text"
+          value="" />
+      </div>
+      <div
+        className="row">
+        <label
+          htmlFor="characterBackground">
+          Background
+        </label>
+        <select
+          className="u-full-width"
+          id="characterBackground"
+          onChange={[Function]}
+          value="Well-Rounded">
+          <option
+            value="Well-Rounded">
+            Well-Rounded
+          </option>
+          <option
+            value="Strong History">
+            Strong History
+          </option>
+          <option
+            value="Complicated History">
+            Complicated History
+          </option>
+          <option
+            value="Strong Community">
+            Strong Community
+          </option>
+          <option
+            value="Complicated Community">
+            Complicated Community
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      className="six columns">
+      <label
+        htmlFor="characterDescription">
+        Description
+      </label>
+      <textarea
+        className="u-full-width"
+        id="characterDescription"
+        onChange={[Function]}
+        placeholder="Very average"
+        value="" />
+    </div>
+  </div>
+  <hr />
+  <div
+    className="row">
+    <div
+      className="six columns">
+      <div
+        className="row">
+        <h2
+          className="three columns">
+          Stats
+        </h2>
+        <aside
+          className="nine columns">
+          9d6 left to assign
+        </aside>
+      </div>
+      <div
+        className="row">
+        <label
+          className="two columns"
+          htmlFor="statAcuity">
+          Acuity
+        </label>
+        <input
+          className="ten columns"
+          id="statAcuity"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="2d6"
+          type="text"
+          value="2d6" />
+      </div>
+      <div
+        className="row">
+        <label
+          className="two columns"
+          htmlFor="statBody">
+          Body
+        </label>
+        <input
+          className="ten columns"
+          id="statBody"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="2d6"
+          type="text"
+          value="2d6" />
+      </div>
+      <div
+        className="row">
+        <label
+          className="two columns"
+          htmlFor="statHeart">
+          Heart
+        </label>
+        <input
+          className="ten columns"
+          id="statHeart"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="2d6"
+          type="text"
+          value="2d6" />
+      </div>
+      <div
+        className="row">
+        <label
+          className="two columns"
+          htmlFor="statWill">
+          Will
+        </label>
+        <input
+          className="ten columns"
+          id="statWill"
+          onBlur={[Function]}
+          onChange={[Function]}
+          placeholder="2d6"
+          type="text"
+          value="2d6" />
+      </div>
+    </div>
+    <div
+      className="six columns">
+      <div
+        className="row">
+        <h2
+          className="three columns">
+          Traits
+        </h2>
+        <aside
+          className="nine columns">
+          1d4 4d6 2d8 left to assign
+        </aside>
+      </div>
+      <input
+        className="button"
+        onClick={[Function]}
+        type="button"
+        value="New Trait" />
+    </div>
+  </div>
+  <hr />
+  <div
+    className="row">
+    <div
+      className="row">
+      <h2
+        className="three columns">
+        Relationships
+      </h2>
+      <aside
+        className="nine columns">
+        4d6 2d8 left to assign
+      </aside>
+    </div>
+    <input
+      className="button"
+      onClick={[Function]}
+      type="button"
+      value="New Relationship" />
+  </div>
+  <hr />
+  <div
+    className="row">
+    <div
+      className="row">
+      <h2
+        className="three columns">
+        Belongings
+      </h2>
+    </div>
+    <input
+      className="button"
+      onClick={[Function]}
+      type="button"
+      value="New Belonging" />
+  </div>
+  <hr />
+  <input
+    className="button-primary"
+    onClick={[Function]}
+    type="submit"
+    value="Update Character" />
+</form>
+`;
