@@ -31,7 +31,6 @@ export function rollDice(post = { dice: [] }) {
   dice.forEach(die => {
     const sides = parseInt(die.size.substring(1), 10)
     const numberOfDie = die.number
-    console.log(numberOfDie)
     for (let i = 0; i < numberOfDie; i++) {
       rolledDice.push({
         type: die.size,

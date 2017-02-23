@@ -52,7 +52,6 @@ export class Character extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className='twelve columns'>
         <header className='row'>

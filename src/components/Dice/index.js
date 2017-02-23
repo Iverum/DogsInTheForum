@@ -23,7 +23,6 @@ export default class Hand extends Component {
 
   renderDie(die, index) {
     if (!die) { return null }
-    console.log(die)
     const key = `die-${index}`
     switch (die.type) {
       case 'd6': {
