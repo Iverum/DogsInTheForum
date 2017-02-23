@@ -40,7 +40,7 @@ export default class UserMenu extends Component {
 
     return (
       <div className="User">
-        <Link className="button" to='user'>{this.props.user.name}</Link>
+        <Link className="button" to='/user'>{this.props.user.name}</Link>
         <input
           className="button"
           type="button"
