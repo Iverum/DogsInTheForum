@@ -107,8 +107,6 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
       }
 
       renderAttributes() {
-        // TODO randomly generate appropriate placeholder text
-        // TODO handle Gun modifier on belongings
         const { errors, attributes } = this.state
         return attributes.map((attr, index) => {
           return (
