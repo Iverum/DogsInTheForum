@@ -12,6 +12,10 @@ export default class Traits extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ traits: nextProps.traits })
+  }
+
   createDiceRegex(props = this.props) {
     const traitDice = props.traitDice.slice(1)
     const dieSizes = traitDice.reduce((accumulator, value) => {
@@ -57,8 +61,13 @@ export default class Traits extends Component {
         dice: { number: parseInt(match[1], 10) || 1, size: match[2] }
       }
       newTraits[traitIndex] = newTrait
-      this.props.onChange('stats', newTraits)
+      this.props.onChange('traits', newTraits)
     }
+  }
+
+  addNewTrait() {
+    const newTrait = { dice: { size: 'd6', number: 2 }, text: '' }
+    this.props.onChange('traits', [...this.state.traits, newTrait])
   }
 
   renderTraits() {
@@ -66,7 +75,7 @@ export default class Traits extends Component {
     let traitRows = []
     this.state.traits.forEach((trait, index) => {
       traitRows.push((
-        <div key={trait.text} className='row'>
+        <div key={index} className='row'>
           <input
             className={cn({
               'two columns': true,
@@ -78,10 +87,7 @@ export default class Traits extends Component {
             onChange={event => {
               let traits = [...this.state.traits]
               traits[index].dice = event.target.value
-              this.setState({ traits })
-            }}
-            onBlur={event => {
-              this.changeTraitDice(index, event.target.value)
+              this.props.onChange('traits', traits)
             }}
           />
           <input
@@ -89,6 +95,11 @@ export default class Traits extends Component {
             type='text'
             placeholder="I'm a good shot"
             value={trait.text}
+            onChange={event => {
+              let traits = [...this.state.traits]
+              traits[index].text = event.target.value
+              this.props.onChange('traits', traits)
+            }}
           />
         </div>
       ))
@@ -105,7 +116,7 @@ export default class Traits extends Component {
           <aside className='nine columns'>{this.getRemainingTraitDice()}</aside>
         </div>
         {this.renderTraits()}
-        <input className='button' type='button' value='New Trait' />
+        <input className='button' type='button' value='New Trait' onClick={this.addNewTrait.bind(this)}/>
       </div>
     )
   }
