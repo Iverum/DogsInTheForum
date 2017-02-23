@@ -10,7 +10,16 @@ import Belongings from './belongings'
 const emptyCharacter = {
   name: '',
   description: '',
-  background: 'Well-Rounded'
+  background: 'Well-Rounded',
+  stats: {
+    Acuity: { size: 'd6', number: 2 },
+    Body: { size: 'd6', number: 2 },
+    Heart: { size: 'd6', number: 2 },
+    Will: { size: 'd6', number: 2 }
+  },
+  traits: [
+    { dice: { size: 'd6', number: 2 }, text: `I'm a good shot` }
+  ]
 }
 
 const backgrounds = {
@@ -118,6 +127,7 @@ export default class CharacterDetails extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <form className='twelve columns'>
         <BasicInfo
@@ -133,7 +143,7 @@ export default class CharacterDetails extends Component {
             onChange={this.changeProperty}
           />
           <Traits
-            {...this.state.character.traits}
+            traits={this.state.character.traits}
             traitDice={backgrounds[this.state.character.background].traits}
             onChange={this.changeProperty}
           />
