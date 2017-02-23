@@ -133,9 +133,20 @@ export default class Traits extends Component {
 }
 
 Traits.defaultProps = {
-  className: 'six columns'
+  className: 'six columns',
+  traits: []
 }
 
+const dice = React.PropTypes.shape({
+  size: React.PropTypes.string.isRequired,
+  number: React.PropTypes.number.isRequired
+})
+
 Traits.propTypes = {
-  className: React.PropTypes.string
+  className: React.PropTypes.string,
+  traits: React.PropTypes.arrayOf(React.PropTypes.shape({
+    dice: dice,
+    text: React.PropTypes.string.isRequired
+  })).isRequired,
+  traitDice: React.PropTypes.arrayOf(dice).isRequired
 }
