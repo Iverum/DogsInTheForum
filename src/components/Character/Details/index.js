@@ -18,7 +18,7 @@ const emptyCharacter = {
     Will: { size: 'd6', number: 2 }
   },
   traits: [
-    { dice: { size: 'd6', number: 2 }, text: `I'm a good shot` }
+    { dice: { size: 'd6', number: 2 }, text: '' }
   ]
 }
 
