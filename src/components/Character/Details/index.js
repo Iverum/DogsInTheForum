@@ -127,6 +127,7 @@ export default class CharacterDetails extends Component {
   }
 
   render() {
+    // TODO make sure users can't overspend dice
     console.log(this.state)
     return (
       <form className='twelve columns'>

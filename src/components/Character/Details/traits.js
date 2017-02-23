@@ -25,10 +25,20 @@ export default class Traits extends Component {
   }
 
   getRemainingTraitDice() {
-    const { traitDice } = this.props
+    const { traitDice, traits } = this.props
+    const diceUsed = {}
+    traits.forEach(trait => {
+      const diceForSize = diceUsed[trait.dice.size]
+      if (!diceForSize) {
+        diceUsed[trait.dice.size] = trait.dice.number
+      } else {
+        diceUsed[trait.dice.size] = diceForSize + trait.dice.number
+      }
+    })
     let remainingTraitDice = ''
     traitDice.forEach(dice => {
-      remainingTraitDice += `${dice.number}${dice.size} `
+      const totalRemaining = dice.number - (diceUsed[dice.size] || 0)
+      remainingTraitDice += `${totalRemaining}${dice.size} `
     })
     remainingTraitDice += 'left to assign'
     return remainingTraitDice
@@ -71,6 +81,7 @@ export default class Traits extends Component {
   }
 
   renderTraits() {
+    // TODO randomly generate placeholder trait text
     const { errors } = this.state
     let traitRows = []
     this.state.traits.forEach((trait, index) => {
@@ -108,7 +119,6 @@ export default class Traits extends Component {
   }
 
   render() {
-    console.log(this.props, this.state)
     return (
       <div className={this.props.className}>
         <div className='row'>
