@@ -1,16 +1,26 @@
 import React, { Component } from 'react'
+import attributify from './player_defined_attributes'
 
-export default class Relationships extends Component {
+class Relationships extends Component {
   render() {
     return (
-      <div className='row'>
-        <h2>Relationships</h2>
+      <div className={this.props.className}>
         <div className='row'>
-          <input className='two columns' type='text' placeholder='2d6' />
-          <input className='ten columns' type='text' placeholder='Who is this?' />
+          <h2 className='three columns'>Relationships</h2>
+          <aside className='nine columns'>{this.props.remainingDice}</aside>
         </div>
-        <input className='button' type='button' value='New Relationship' />
+        {this.props.children}
       </div>
     )
   }
 }
+
+Relationships.defaultProps = {
+  className: 'row'
+}
+
+Relationships.propTypes = {
+  className: React.PropTypes.string
+}
+
+export default attributify({ name: 'relationships' })(Relationships)

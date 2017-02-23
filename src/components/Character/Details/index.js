@@ -17,9 +17,8 @@ const emptyCharacter = {
     Heart: { size: 'd6', number: 2 },
     Will: { size: 'd6', number: 2 }
   },
-  traits: [
-    { dice: { size: 'd6', number: 2 }, text: '' }
-  ]
+  traits: [],
+  relationships: []
 }
 
 const backgrounds = {
@@ -129,6 +128,7 @@ export default class CharacterDetails extends Component {
   render() {
     // TODO make sure users can't overspend dice
     console.log(this.state)
+    const { background: characterBackground } = this.state.character
     return (
       <form className='twelve columns'>
         <BasicInfo
@@ -140,17 +140,21 @@ export default class CharacterDetails extends Component {
         <div className='row'>
           <Stats
             {...this.state.character.stats}
-            backgroundStats={backgrounds[this.state.character.background].stats}
+            backgroundStats={backgrounds[characterBackground].stats}
             onChange={this.changeProperty}
           />
           <Traits
-            traits={this.state.character.traits}
-            traitDice={backgrounds[this.state.character.background].traits}
+            attributes={this.state.character.traits}
+            attributeDice={backgrounds[characterBackground].traits}
             onChange={this.changeProperty}
           />
         </div>
         <hr />
-        <Relationships {...this.state} />
+        <Relationships
+          attributes={this.state.character.relationships}
+          attributeDice={backgrounds[characterBackground].relationships}
+          onChange={this.changeProperty}
+        />
         <hr />
         <Belongings {...this.state} />
         <hr />
