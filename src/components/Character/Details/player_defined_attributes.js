@@ -90,6 +90,22 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
         }
       }
 
+      handleAdditionalOptionChange(index, valueName, newValue) {
+        const newAttributes = [...this.state.attributes]
+        const newAttribute = {
+          ...newAttributes[index],
+          [valueName]: newValue
+        }
+        newAttributes[index] = newAttribute
+        this.props.onChange(options.name, newAttributes)
+      }
+
+      renderAdditionalOption(index) {
+        if (options.additionalOption) {
+          return <options.additionalOption onChange={this.handleAdditionalOptionChange.bind(this, index)} />
+        }
+      }
+
       renderAttributes() {
         // TODO randomly generate appropriate placeholder text
         // TODO handle Gun modifier on belongings
@@ -99,7 +115,8 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
             <div key={index} className='row'>
               <input
                 className={cn({
-                  'two columns': true,
+                  'two': true,
+                  'columns': true,
                   'error': _.includes(errors, index)
                 })}
                 type='text'
@@ -115,7 +132,12 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
                 }}
               />
               <input
-                className='ten columns'
+              className={cn({
+                'eight': options.additionalOption,
+                'ten': !options.additionalOption,
+                'columns': true,
+                'error': _.includes(errors, index)
+              })}
                 type='text'
                 placeholder='This will get better'
                 value={attr.text}
@@ -125,6 +147,7 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
                   this.props.onChange(options.name, newAttributes)
                 }}
               />
+              {this.renderAdditionalOption(index)}
             </div>
           )
         })
