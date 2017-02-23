@@ -126,6 +126,10 @@ export default class CharacterDetails extends Component {
     })
   }
 
+  saveCharacter() {
+    this.characterRef.set(this.state.character)
+  }
+
   render() {
     // TODO make sure users can't overspend dice
     console.log(this.state)
@@ -163,7 +167,12 @@ export default class CharacterDetails extends Component {
           onChange={this.changeProperty}
         />
         <hr />
-        <input className='button-primary' type='submit' value='Update Character' />
+        <input
+          className='button-primary'
+          type='submit'
+          value='Update Character'
+          onClick={this.saveCharacter.bind(this)}
+        />
       </form>
     )
   }
