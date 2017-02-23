@@ -37,7 +37,7 @@ export class Thread extends Component {
     const { threads, params } = this.props
     const thread = threads[params.uuid]
     this.postRef.push(post)
-    firebase.database().ref(`threads/${params.uuid}`).child('postCount').set(thread.length + 1)
+    firebase.database().ref(`threads/${params.uuid}`).child('postCount').set((thread.length || 0) + 1)
   }
 
   renderPosts() {

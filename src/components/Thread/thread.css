@@ -1,0 +1,12 @@
+.right-border {
+  border-right: gray solid 1px;
+}
+
+.bottom-border {
+  border-bottom: gray solid 1px;
+}
+
+div.post {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

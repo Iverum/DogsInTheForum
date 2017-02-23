@@ -57,7 +57,8 @@ export default class NewPost extends Component {
   submitPost(e) {
     if (this.props.onSubmit) {
       const post = parseText(this.state.value)
-      post.dice = rollDice(post)
+      post.userDice = rollDice(post)
+      delete post.dice
       this.props.onSubmit({
         username: this.props.user.name,
         ...post

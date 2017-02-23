@@ -1,3 +1,7 @@
 .dice-hand td {
   text-align: center;
 }
+
+caption {
+  caption-side: top;
+}

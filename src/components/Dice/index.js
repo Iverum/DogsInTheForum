@@ -63,6 +63,7 @@ export default class Hand extends Component {
     return (
       <div className="dice-hand">
         <table className="u-full-width">
+          <caption>{this.props.caption}</caption>
           <tbody>
             {this.renderDice()}
           </tbody>
@@ -74,7 +75,8 @@ export default class Hand extends Component {
 }
 
 Hand.defaultProps = {
-  dicePerRow: 10
+  dicePerRow: 10,
+  caption: ''
 }
 
 Hand.propTypes = {
@@ -82,5 +84,6 @@ Hand.propTypes = {
   dice: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.oneOf(['d2', 'd4', 'd6', 'd8', 'd10', 'd12', 'd20']),
     value: PropTypes.number
-  })).isRequired
+  })).isRequired,
+  caption: PropTypes.string
 }

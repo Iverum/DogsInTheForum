@@ -2,51 +2,43 @@ exports[`test thread is rendered correctly 1`] = `
 <div
   className="twelve columns">
   <div
-    className="row">
+    className="row post">
     <div
-      className="three columns">
+      className="three columns right-border">
       <h3>
         Anonymous
       </h3>
     </div>
     <div
-      className="nine columns"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<p>Lorem Ipsum</p>
-        ",
-        }
-      } />
-    <div
-      className="dice-hand">
-      <table
-        className="u-full-width">
-        <tbody />
-      </table>
+      className="nine columns">
+      <div
+        className=""
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Lorem Ipsum</p>
+          ",
+          }
+        } />
     </div>
   </div>
   <div
-    className="row">
+    className="row post">
     <div
-      className="three columns">
+      className="three columns right-border">
       <h3>
         Nonymous
       </h3>
     </div>
     <div
-      className="nine columns"
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<p>Dolor set amet</p>
-        ",
-        }
-      } />
-    <div
-      className="dice-hand">
-      <table
-        className="u-full-width">
-        <tbody />
-      </table>
+      className="nine columns">
+      <div
+        className=""
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Dolor set amet</p>
+          ",
+          }
+        } />
     </div>
   </div>
   <hr />
