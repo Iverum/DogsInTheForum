@@ -23,4 +23,7 @@ Relationships.propTypes = {
   className: React.PropTypes.string
 }
 
-export default attributify({ name: 'relationships' })(Relationships)
+export default attributify({
+  name: 'relationships',
+  buttonText: 'New Relationship'
+})(Relationships)

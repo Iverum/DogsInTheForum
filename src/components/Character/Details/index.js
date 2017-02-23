@@ -18,7 +18,8 @@ const emptyCharacter = {
     Will: { size: 'd6', number: 2 }
   },
   traits: [],
-  relationships: []
+  relationships: [],
+  belongings: []
 }
 
 const backgrounds = {
@@ -156,7 +157,11 @@ export default class CharacterDetails extends Component {
           onChange={this.changeProperty}
         />
         <hr />
-        <Belongings {...this.state} />
+        <Belongings
+          noDiceLimits
+          attributes={this.state.character.belongings}
+          onChange={this.changeProperty}
+        />
         <hr />
         <input className='button-primary' type='submit' value='Update Character' />
       </form>

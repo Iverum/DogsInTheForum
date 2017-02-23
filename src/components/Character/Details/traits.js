@@ -23,4 +23,7 @@ Traits.propTypes = {
   className: React.PropTypes.string
 }
 
-export default attributify({ name: 'traits' })(Traits)
+export default attributify({
+  name: 'traits',
+  buttonText: 'New Trait'
+})(Traits)

@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
+import attributify from './player_defined_attributes'
 
-export default class Belongings extends Component {
+class Belongings extends Component {
   render() {
     return (
       <div className='row'>
-        <h2>Belongings</h2>
         <div className='row'>
-          <input className='two columns' type='text' placeholder='1d6' />
-          <input className='ten columns' type='text' placeholder='What is this?' />
+          <h2 className='three columns'>Belongings</h2>
         </div>
-        <input className='button' type='button' value='New Belonging' />
+        {this.props.children}
       </div>
     )
   }
 }
+
+Belongings.defaultProps = {
+  className: 'row'
+}
+
+Belongings.propTypes = {
+  className: React.PropTypes.string
+}
+
+export default attributify({
+  name: 'belongings',
+  buttonText: 'New Belonging'
+})(Belongings)

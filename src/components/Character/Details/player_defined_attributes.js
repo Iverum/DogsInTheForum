@@ -23,6 +23,9 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
       }
 
       createDiceRegex(props = this.props) {
+        if (this.props.noDiceLimits) {
+          return /(\d*)(d4|d6|d8)/
+        }
         const attributeDice = props.attributeDice.slice(1)
         const dieSizes = attributeDice.reduce((accumulator, value) => {
           return `${accumulator}|${value.size}`
@@ -31,6 +34,7 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
       }
 
       getRemainingDice() {
+        if (this.props.noDiceLimits) { return '' }
         const { attributeDice, attributes } = this.props
         const diceUsed = {}
         attributes.forEach(attr => {
@@ -88,6 +92,7 @@ export default function createPlayerDefinedAttributeComponent(options = {}) {
 
       renderAttributes() {
         // TODO randomly generate appropriate placeholder text
+        // TODO handle Gun modifier on belongings
         const { errors, attributes } = this.state
         return attributes.map((attr, index) => {
           return (
