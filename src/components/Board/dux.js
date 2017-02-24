@@ -8,6 +8,11 @@ const CLEAR_THREADS = 'ditf/boards/CLEAR_THREADS'
 export default function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADD_THREAD: {
+      /*
+       * This runs the risk of becoming slow as we add more threads to a board. We
+       * might want to consider indexing threads with a UUID in order to reduce the
+       * time spent here.
+       */
       const existingThread = _.find(state, thread => thread.uuid === action.data.uuid)
       if (!existingThread) {
         return [...state, action.data]
