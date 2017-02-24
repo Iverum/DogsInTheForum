@@ -29,6 +29,7 @@ export default function handleCommands(text) {
   let dice = []
   let possibleCommandMatch = bindingRegex.exec(text)
   while (possibleCommandMatch !== null) {
+    // eslint-disable-next-line no-loop-func
     commandRegexes.forEach(regex => {
       if (regex.test(possibleCommandMatch[1])) {
         const newDice = commands[regex](possibleCommandMatch[1])
