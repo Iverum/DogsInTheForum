@@ -1,7 +1,17 @@
-.dice-hand td {
-  text-align: center;
+.dice {
+  padding-top: 1rem;
 }
 
-caption {
-  caption-side: top;
+.caption {
+  margin: 0;
+}
+
+.diceGroup {
+  flex: 1;
+  flex-direction: row;
+}
+
+.die {
+  display: inline-block;
+  padding: 0.25rem;
 }

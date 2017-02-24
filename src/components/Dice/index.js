@@ -27,14 +27,14 @@ export default class Hand extends Component {
     switch (die.type) {
       case 'd6': {
         return (
-          <td key={key}>
+          <div className='die' key={key}>
             <img src={images.d6[die.value-1]} width="50" height="50" alt="{die.type} with value of {die.value}" />
-          </td>
+          </div>
         )
       }
 
       default: {
-        return <td key={key}>{die.value}</td>
+        return <p className='die' key={key}>{die.value}</p>
       }
     }
   }
@@ -55,19 +55,15 @@ export default class Hand extends Component {
     }
     return groups.map((group, index) => {
       const key = `group-${index}`
-      return <tr key={key}>{group}</tr>
+      return <div key={key} className='diceGroup'>{group}</div>
     })
   }
 
   render() {
     return (
-      <div className="dice-hand">
-        <table className="u-full-width">
-          <caption>{this.props.caption}</caption>
-          <tbody>
-            {this.renderDice()}
-          </tbody>
-        </table>
+      <div className='dice'>
+        <p className='caption'>{this.props.caption}</p>
+        {this.renderDice()}
       </div>
     )
   }
