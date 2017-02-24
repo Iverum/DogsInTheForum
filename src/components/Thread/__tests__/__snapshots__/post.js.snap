@@ -1,22 +1,30 @@
 exports[`test post is rendered with username and text 1`] = `
-<div
+<section
   className="row post">
   <div
-    className="three columns right-border">
-    <h3>
+    className="three columns">
+    <img
+      src="https://placehold.it/175x175" />
+    <h3
+      className="username">
       Anonymous
     </h3>
   </div>
   <div
     className="nine columns">
     <div
-      className=""
-      dangerouslySetInnerHTML={
-        Object {
-          "__html": "<p>Lorem ipsum</p>
-        ",
-        }
-      } />
+      className="row">
+      <div
+        className="text"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "<p>Lorem ipsum</p>
+          ",
+          }
+        } />
+    </div>
+    <div
+      className="row" />
   </div>
-</div>
+</section>
 `;

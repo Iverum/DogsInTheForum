@@ -1,46 +1,62 @@
 exports[`test thread is rendered correctly 1`] = `
 <div
   className="twelve columns">
-  <div
+  <section
     className="row post">
     <div
-      className="three columns right-border">
-      <h3>
+      className="three columns">
+      <img
+        src="https://placehold.it/175x175" />
+      <h3
+        className="username">
         Anonymous
       </h3>
     </div>
     <div
       className="nine columns">
       <div
-        className=""
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<p>Lorem Ipsum</p>
-          ",
-          }
-        } />
+        className="row">
+        <div
+          className="text"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>Lorem Ipsum</p>
+            ",
+            }
+          } />
+      </div>
+      <div
+        className="row" />
     </div>
-  </div>
-  <div
+  </section>
+  <section
     className="row post">
     <div
-      className="three columns right-border">
-      <h3>
+      className="three columns">
+      <img
+        src="https://placehold.it/175x175" />
+      <h3
+        className="username">
         Nonymous
       </h3>
     </div>
     <div
       className="nine columns">
       <div
-        className=""
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "<p>Dolor set amet</p>
-          ",
-          }
-        } />
+        className="row">
+        <div
+          className="text"
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": "<p>Dolor set amet</p>
+            ",
+            }
+          } />
+      </div>
+      <div
+        className="row" />
     </div>
-  </div>
+  </section>
   <hr />
   <div
     className="row">
