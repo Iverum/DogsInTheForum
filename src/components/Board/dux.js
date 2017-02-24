@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 // Actions
 const ADD_THREAD = 'ditf/boards/ADD_THREAD'
 const CLEAR_THREADS = 'ditf/boards/CLEAR_THREADS'
@@ -6,7 +8,16 @@ const CLEAR_THREADS = 'ditf/boards/CLEAR_THREADS'
 export default function reducer(state = [], action = {}) {
   switch (action.type) {
     case ADD_THREAD: {
-      return [...state, action.data]
+      const existingThread = _.find(state, thread => thread.uuid === action.data.uuid)
+      if (!existingThread) {
+        return [...state, action.data]
+      }
+      const newThreads = _.without(state, existingThread)
+      const newThread = {
+        ...existingThread,
+        ...action.data
+      }
+      return [...newThreads, newThread]
     }
 
     case CLEAR_THREADS: {
