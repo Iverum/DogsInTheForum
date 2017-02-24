@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
 })
 
 const middleware = compose(
-  persistState()
+  persistState(['threads', 'board', 'user', 'characters'])
 )
 
 const store = createStore(rootReducer, {}, middleware)
