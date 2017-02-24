@@ -1,12 +1,23 @@
-.right-border {
-  border-right: gray solid 1px;
+section.post {
+  align-items: stretch;
+  box-shadow: 1px 0px 1px #E1E1E1, -1px 0px 1px #E1E1E1, 0px 1px 1px #E1E1E1, 0px -1px 1px #E1E1E1;
+  flex-direction: row;
+  margin-bottom: 2.5rem;
+  padding: 1rem;
 }
 
-.bottom-border {
-  border-bottom: gray solid 1px;
+section.post>div:first-child {
+  border-right: 1px solid #E1E1E1;
 }
 
-div.post {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.post .username {
+  font-size: 1.9rem;
+}
+
+.post .text {
+  font-size: 2rem;
+}
+
+.bottomBorder {
+  border-bottom: 1px solid #E1E1E1;
 }

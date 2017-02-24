@@ -16,15 +16,23 @@ export default class Post extends Component {
 
   render() {
     return (
-      <div className="row post">
-        <div className="three columns right-border">
-          <h3>{this.props.username}</h3>
+      <section className='row post'>
+        <div className='three columns'>
+          <img src='https://placehold.it/175x175' />
+          <h3 className='username'>{this.props.username}</h3>
         </div>
         <div className='nine columns'>
-          <div className={cn({ 'bottom-border': !_.isEmpty(this.props.userDice) })} dangerouslySetInnerHTML={{ __html: mdRenderer.render(this.props.text) }} />
-          {this.renderDice()}
+          <div className={cn({
+            row: true,
+            bottomBorder: !_.isEmpty(this.props.userDice)
+          })}>
+            <div className='text' dangerouslySetInnerHTML={{ __html: mdRenderer.render(this.props.text) }} />
+          </div>
+          <div className='row'>
+            {this.renderDice()}
+          </div>
         </div>
-      </div>
+      </section>
     )
   }
 
