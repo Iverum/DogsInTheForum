@@ -104,10 +104,15 @@ export class CharacterDetails extends Component {
     auth.getRedirectResult()
       .then(() => {
         const id = auth.currentUser.uid
-        this.characterRef = database.ref(`character/${id}/${this.props.params.uuid}`)
+        this.characterRef = database.ref(`characters/${id}/${this.props.params.uuid}`)
         this.characterRef.off()
         this.characterRef.on('value', this.updateCharacterFromDatabase)
       })
+  }
+
+  componentWillUnmount() {
+    this.characterRef.off()
+    this.characterRef = null
   }
 
   updateCharacterFromDatabase(data) {
