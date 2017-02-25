@@ -5,13 +5,11 @@ import firebase from 'firebase'
 import uuid from 'uuid/v4'
 import _ from 'lodash'
 import CharacterRow from './row'
-import * as characterActions from './dux'
 
 export class Character extends Component {
   constructor(props) {
     super(props)
     this.createCharacter = this.createCharacter.bind(this)
-    this.updateCharactersFromDatabase = this.updateCharactersFromDatabase.bind(this)
   }
 
   componentWillMount() {
@@ -20,21 +18,13 @@ export class Character extends Component {
     auth.getRedirectResult()
       .then(() => {
         const id = auth.currentUser.uid
-        this.characterRef = database.ref(`character/${id}`)
-        this.characterRef.off()
-        this.characterRef.on('child_added', this.updateCharactersFromDatabase)
-        this.characterRef.on('child_changed', this.updateCharactersFromDatabase)
+        this.characterRef = database.ref(`characters/${id}`)
       })
   }
 
   componentWillUnmount() {
     this.characterRef.off()
     this.characterRef = null
-  }
-
-  updateCharactersFromDatabase(data) {
-    const character = data.val()
-    this.props.dispatch(characterActions.addCharacter(character))
   }
 
   createCharacter(name) {

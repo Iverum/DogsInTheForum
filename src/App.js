@@ -6,6 +6,7 @@ import firebase from 'firebase'
 import config from './config'
 import store from './store'
 import * as userActions from './components/User/dux'
+import * as characterActions from './components/Character/dux'
 
 import Base from './components/Base'
 import Board from './components/Board'
@@ -16,6 +17,10 @@ import CharacterDetails from './components/Character/Details'
 
 const history = syncHistoryWithStore(browserHistory, store)
 
+function updateCharacter(data) {
+  store.dispatch(characterActions.addCharacter(data.val()))
+}
+
 class App extends Component {
   componentWillMount() {
     firebase.initializeApp(config)
@@ -23,9 +28,19 @@ class App extends Component {
     auth.getRedirectResult()
       .then(result => {
         if (auth.currentUser) {
+          const id = auth.currentUser.uid
           store.dispatch(userActions.logIn({ name: auth.currentUser.displayName }))
+          this.characterRef = firebase.database().ref(`characters/${id}`)
+          this.characterRef.off()
+          this.characterRef.on('child_added', updateCharacter)
+          this.characterRef.on('child_changed', updateCharacter)
         }
       })
+  }
+
+  componentWillUnmount() {
+    this.characterRef.off()
+    this.characterRef = null
   }
 
   router() {
