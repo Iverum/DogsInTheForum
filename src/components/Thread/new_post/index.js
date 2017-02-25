@@ -1,5 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import md5 from 'md5'
 import handleCommands from './commands'
+
+function buildGravatarURL(email) {
+  const hash = md5(email.toLowerCase().trim())
+  return `https://www.gravatar.com/avatar/${hash}?d=identicon&s=175`
+}
 
 export default class NewPost extends Component {
 
@@ -21,6 +27,7 @@ export default class NewPost extends Component {
       delete post.dice
       this.props.onSubmit({
         username: this.props.user.name,
+        imageURL: buildGravatarURL(this.props.user.email),
         ...post
       })
       this.setState({ value: '' })

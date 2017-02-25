@@ -29,7 +29,7 @@ class App extends Component {
       .then(result => {
         if (auth.currentUser) {
           const id = auth.currentUser.uid
-          store.dispatch(userActions.logIn({ name: auth.currentUser.displayName }))
+          store.dispatch(userActions.logIn({ name: auth.currentUser.displayName, email: auth.currentUser.email }))
           this.characterRef = firebase.database().ref(`characters/${id}`)
           this.characterRef.off()
           this.characterRef.on('child_added', updateCharacter)
