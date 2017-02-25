@@ -2,7 +2,6 @@ import _ from 'lodash'
 
 // Actions
 const ADD_THREAD = 'ditf/boards/ADD_THREAD'
-const REMOVE_THREAD = 'ditf/boards/REMOVE_THREAD'
 const CLEAR_THREADS = 'ditf/boards/CLEAR_THREADS'
 
 // Reducer
@@ -26,10 +25,6 @@ export default function reducer(state = [], action = {}) {
       return [...newThreads, newThread]
     }
 
-    case REMOVE_THREAD: {
-      return _.reject(state, thread => thread.uuid === action.data.uuid)
-    }
-
     case CLEAR_THREADS: {
       return []
     }
@@ -44,13 +39,6 @@ export default function reducer(state = [], action = {}) {
 export function addThread(thread) {
   return {
     type: ADD_THREAD,
-    data: thread
-  }
-}
-
-export function removeThread(thread) {
-  return {
-    type: REMOVE_THREAD,
     data: thread
   }
 }
