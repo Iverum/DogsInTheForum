@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import renderer from 'react-test-renderer'
-import Character from '../index'
+import { CharacterDetails } from '../index'
 
 jest.mock('firebase', () => {
   return {
@@ -26,7 +26,7 @@ jest.mock('firebase', () => {
 
 test('character details are rendered correctly', () => {
   const component = renderer.create(
-    <Character params={{ uuid: 'test' }} />
+    <CharacterDetails params={{ uuid: 'test' }} />
   )
   let tree = component.toJSON()
   expect(tree).toMatchSnapshot()

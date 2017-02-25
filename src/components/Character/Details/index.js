@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
+import { connect } from 'react-redux'
 import './index.css'
 import BasicInfo from './basic'
 import Stats from './stats'
 import Traits from './traits'
 import Relationships from './relationships'
 import Belongings from './belongings'
+import * as characterActions from '../dux'
 
 const emptyCharacter = {
   name: '',
@@ -88,7 +90,7 @@ const backgrounds = {
   }
 }
 
-export default class CharacterDetails extends Component {
+export class CharacterDetails extends Component {
   constructor(props) {
     super(props)
     this.updateCharacterFromDatabase = this.updateCharacterFromDatabase.bind(this)
@@ -113,6 +115,7 @@ export default class CharacterDetails extends Component {
       ...emptyCharacter,
       ...data.val()
     }
+    this.props.dispatch(characterActions.addCharacter(character))
     this.setState({ character })
   }
 
@@ -176,3 +179,5 @@ export default class CharacterDetails extends Component {
   }
 
 }
+
+export default connect()(CharacterDetails)

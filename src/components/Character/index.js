@@ -3,6 +3,7 @@ import { ListView, ListRows, Pagination } from 'react-list-combo'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
 import uuid from 'uuid/v4'
+import _ from 'lodash'
 import CharacterRow from './row'
 import * as characterActions from './dux'
 
@@ -29,7 +30,6 @@ export class Character extends Component {
   componentWillUnmount() {
     this.characterRef.off()
     this.characterRef = null
-    this.props.dispatch(characterActions.clear())
   }
 
   updateCharactersFromDatabase(data) {
@@ -79,5 +79,5 @@ export class Character extends Component {
 }
 
 export default connect(state => ({
-  characters: state.characters
+  characters: _.values(state.characters)
 }))(Character)
