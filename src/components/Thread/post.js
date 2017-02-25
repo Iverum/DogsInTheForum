@@ -18,7 +18,7 @@ export default class Post extends Component {
     return (
       <section className='row post'>
         <div className='three columns'>
-          <img src='https://placehold.it/175x175' />
+          <img src={this.props.imageURL} />
           <h3 className='username'>{this.props.username}</h3>
         </div>
         <div className='nine columns'>
@@ -39,11 +39,13 @@ export default class Post extends Component {
 }
 
 Post.defaultProps = {
-  userDice: []
+  userDice: [],
+  imageURL: 'https://placehold.it/175x175'
 }
 
 Post.propTypes = {
   username: PropTypes.string.isRequired,
+  imageURL: PropTypes.string,
   text: PropTypes.string.isRequired,
   userDice: PropTypes.arrayOf(PropTypes.shape({
     type: PropTypes.oneOf(['d2', 'd4', 'd6', 'd8', 'd10', 'd12', 'd20']),
