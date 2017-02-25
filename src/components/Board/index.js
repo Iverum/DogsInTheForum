@@ -6,31 +6,15 @@ import uuid from 'uuid/v4'
 import './index.css'
 import Thread from './thread'
 import NewThread from './new_thread'
-import * as boardActions from './dux'
 
 export class Board extends Component {
 
   constructor(props) {
     super(props)
-    this.updateThreadsFromDatabase = this.updateThreadsFromDatabase.bind(this)
     this.startCreatingThread = this.startCreatingThread.bind(this)
     this.createThread = this.createThread.bind(this)
     this.endCreatingThread = this.endCreatingThread.bind(this)
     this.state = { creatingThread: false }
-  }
-
-  componentWillMount() {
-    const database = firebase.database()
-    this.boardRef = database.ref('threads')
-    this.boardRef.off()
-    this.boardRef.on('child_added', this.updateThreadsFromDatabase)
-    this.boardRef.on('child_changed', this.updateThreadsFromDatabase)
-  }
-
-  componentWillUnmount() {
-    this.boardRef.off()
-    this.boardRef = null
-    this.props.dispatch(boardActions.clear())
   }
 
   startCreatingThread() {
@@ -53,11 +37,6 @@ export class Board extends Component {
     this.setState({
       creatingThread: false
     })
-  }
-
-  updateThreadsFromDatabase(data) {
-    const thread = data.val()
-    this.props.dispatch(boardActions.addThread(thread))
   }
 
   render() {
