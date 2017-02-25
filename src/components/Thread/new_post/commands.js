@@ -51,10 +51,8 @@ function executeCharacterCommand(command) {
   characterCommandRegexes.forEach(regex => {
     if (regex.test(command)) {
       const newDice = characterCommands[regex](character, command)
-      console.log(newDice)
       newDice.forEach(newDie => {
         const rolled = internalRollDice(newDie.number, newDie.size)
-        console.log(rolled)
         dice = [
           ...dice,
           ...rolled
