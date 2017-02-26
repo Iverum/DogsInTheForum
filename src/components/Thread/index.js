@@ -41,6 +41,7 @@ export class Thread extends Component {
   }
 
   createNewPost(post) {
+    // TODO handle post.hand & put the values somewhere
     const { threads, params } = this.props
     const thread = threads[params.uuid]
     let threadLength = 0

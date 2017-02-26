@@ -79,7 +79,6 @@ export default function handleCommands(text) {
     // eslint-disable-next-line no-loop-func
     commandRegexes.forEach(regex => {
       if (regex.test(possibleCommandMatch[1])) {
-        // TODO store hand information somewhere
         const newDice = commands[regex](possibleCommandMatch[1])
         if (regex === commandRegexes[0]) {
           dice.rolledDice = [

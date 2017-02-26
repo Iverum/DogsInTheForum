@@ -19,6 +19,7 @@ export default class NewPost extends Component {
   submitPost(e) {
     if (this.props.onSubmit) {
       const post = handleCommands(this.state.value)
+      post.hand = post.dice.hand
       post.dice = post.dice.rolledDice
       this.props.onSubmit({
         ...post,
