@@ -4,6 +4,7 @@ import { ListView, ListRows, Pagination } from 'react-list-combo'
 import firebase from 'firebase'
 import moment from 'moment'
 import uuid from 'uuid/v4'
+import _ from 'lodash'
 import './index.css'
 import Thread from './thread'
 import NewThread from './new_thread'
@@ -61,9 +62,11 @@ export class Board extends Component {
 
   updateThreadsFromDatabase(data) {
     const thread = data.val()
-    firebase.database().ref(`users/${thread.author}`).once('value', data => {
-      this.props.dispatch(userActions.addUser(data.val()))
-    })
+    if (!_.has(this.props.users, thread.author)) {
+      firebase.database().ref(`users/${thread.author}`).once('value', data => {
+        this.props.dispatch(userActions.addUser(data.val()))
+      })
+    }
     this.props.dispatch(boardActions.addThread(thread))
   }
 
