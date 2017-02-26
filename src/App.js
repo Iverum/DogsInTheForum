@@ -19,7 +19,7 @@ import CharacterDetails from './components/Character/Details'
 const history = syncHistoryWithStore(browserHistory, store)
 
 function updateCharacter(data) {
-  store.dispatch(characterActions.addCharacter(data.val()))
+  store.dispatch(characterActions.addPlayerCharacter(data.val()))
 }
 
 function saveUser(authUser) {

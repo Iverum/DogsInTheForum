@@ -41,6 +41,7 @@ export class Thread extends Component {
   }
 
   createNewPost(post) {
+    console.log(post)
     const { threads, params } = this.props
     const thread = threads[params.uuid]
     let threadLength = 0
@@ -77,6 +78,7 @@ export class Thread extends Component {
         <hr />
         <NewPost
           user={this.props.user}
+          characters={this.props.characters}
           onSubmit={this.createNewPost}
         />
       </div>
@@ -88,5 +90,6 @@ export class Thread extends Component {
 export default connect(state => ({
   threads: state.threads,
   user: state.users.currentUser,
-  users: state.users.users
+  users: state.users.users,
+  characters: state.characters.player
 }))(Thread)

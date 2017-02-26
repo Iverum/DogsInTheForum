@@ -69,5 +69,5 @@ export class Character extends Component {
 }
 
 export default connect(state => ({
-  characters: _.values(state.characters)
+  characters: _.values(state.characters.player)
 }))(Character)
