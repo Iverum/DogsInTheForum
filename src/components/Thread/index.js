@@ -75,5 +75,5 @@ export class Thread extends Component {
 
 export default connect(state => ({
   threads: state.threads,
-  user: state.user
+  user: state.users.currentUser
 }))(Thread)

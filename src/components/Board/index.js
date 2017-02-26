@@ -2,11 +2,13 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { ListView, ListRows, Pagination } from 'react-list-combo'
 import firebase from 'firebase'
+import moment from 'moment'
 import uuid from 'uuid/v4'
 import './index.css'
 import Thread from './thread'
 import NewThread from './new_thread'
 import * as boardActions from './dux'
+import * as userActions from '../User/dux'
 
 export class Board extends Component {
 
@@ -20,8 +22,7 @@ export class Board extends Component {
   }
 
   componentWillMount() {
-    const database = firebase.database()
-    this.boardRef = database.ref('threads')
+    this.boardRef = firebase.database().ref('threads')
     this.boardRef.off()
     this.boardRef.on('child_added', this.updateThreadsFromDatabase)
     this.boardRef.on('child_changed', this.updateThreadsFromDatabase)
@@ -40,11 +41,14 @@ export class Board extends Component {
   }
 
   createThread(name) {
+    const now = moment().format()
     const newThread = {
       uuid: uuid(),
-      author: this.props.user.name,
+      author: this.props.user.id,
       name,
-      postCount: 0
+      postCount: 0,
+      created: now,
+      updated: now
     }
     firebase.database().ref(`threads/${newThread.uuid}`).set(newThread)
   }
@@ -57,10 +61,20 @@ export class Board extends Component {
 
   updateThreadsFromDatabase(data) {
     const thread = data.val()
+    firebase.database().ref(`users/${thread.author}`).once('value', data => {
+      this.props.dispatch(userActions.addUser(data.val()))
+    })
     this.props.dispatch(boardActions.addThread(thread))
   }
 
   render() {
+    const threads = this.props.threads.map(thread => {
+      return {
+        ...thread,
+        author: this.props.users[thread.author].name
+      }
+    })
+
     return (
       <div className='twelve columns'>
         <NewThread
@@ -78,7 +92,7 @@ export class Board extends Component {
           />
         </header>
         <ListView
-          initData={this.props.threads}
+          initData={threads}
           perPage={9}
         >
           <ListRows><Thread /></ListRows>
@@ -103,5 +117,6 @@ Board.propTypes = {
 
 export default connect(state => ({
   threads: state.board,
-  user: state.user
+  user: state.users.currentUser,
+  users: state.users.users
 }))(Board)

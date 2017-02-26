@@ -21,4 +21,4 @@ export class User extends Component {
 
 }
 
-export default connect(state => ({ user: state.user }))(User)
+export default connect(state => ({ user: state.users.currentUser }))(User)

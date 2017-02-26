@@ -1,16 +1,31 @@
 // Actions
-const LOG_IN = 'ditf/user/LOG_IN'
-const LOG_OUT = 'ditf/user/LOG_OFF'
+const LOG_IN = 'ditf/users/LOG_IN'
+const LOG_OUT = 'ditf/users/LOG_OFF'
+const ADD_USER = 'ditf/users/ADD_USER'
 
 // Reducer
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case LOG_IN: {
-      return action.data
+      return {
+        ...state,
+        currentUser: action.data
+      }
     }
 
     case LOG_OUT: {
       return {}
+    }
+
+    case ADD_USER: {
+      const currentUsers = state.users
+      return {
+        ...state,
+        users: {
+          ...currentUsers,
+          [action.data.id]: action.data
+        }
+      }
     }
 
     default: {
@@ -28,4 +43,11 @@ export function logIn(user) {
 
 export function logOut() {
   return { type: LOG_OUT }
+}
+
+export function addUser(user) {
+  return {
+    type: ADD_USER,
+    data: user
+  }
 }

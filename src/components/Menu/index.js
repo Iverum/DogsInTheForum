@@ -16,4 +16,6 @@ export class Menu extends Component {
 
 }
 
-export default connect(state => ({user: state.user}))(Menu)
+export default connect(state => ({
+  user: state.users.currentUser
+}))(Menu)

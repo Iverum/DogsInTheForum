@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import firebase from 'firebase'
+import _ from 'lodash'
 import { Link } from 'react-router'
 import * as userActions from './dux'
 import './menu.css'
@@ -25,7 +26,7 @@ export default class UserMenu extends Component {
   }
 
   render() {
-    if (!this.props.user.name) {
+    if (_.isEmpty(this.props.user)) {
       return (
         <div className="User">
           <input
@@ -55,6 +56,6 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string
-  }).isRequired
+    name: PropTypes.string.isRequired
+  })
 }
