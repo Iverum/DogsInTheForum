@@ -19,6 +19,7 @@ export default class Post extends Component {
   }
 
   renderHand() {
+    // TODO fetch the character name for the caption
     if (_.isEmpty(this.props.hand)) { return null }
     const caption = `${this.props.author.name} has:`
     return <Dice dice={this.props.hand} caption={caption} />

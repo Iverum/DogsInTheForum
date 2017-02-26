@@ -70,6 +70,7 @@ const commands = {
 
 export default function handleCommands(text) {
   const bindingRegex = /\[\[(.+)\]\]/g
+  let character
   let dice = {
     rolledDice: [],
     hand: []
@@ -86,6 +87,7 @@ export default function handleCommands(text) {
             ...newDice
           ]
         } else if (regex === commandRegexes[1]) {
+          character = findCharacter(possibleCommandMatch[1]).uuid
           dice.hand = [
             ...dice.hand,
             ...newDice
@@ -96,5 +98,5 @@ export default function handleCommands(text) {
     possibleCommandMatch = bindingRegex.exec(text)
   }
   const newText = text.replace(bindingRegex, '').trim()
-  return { dice, text: newText }
+  return { dice, character, text: newText }
 }

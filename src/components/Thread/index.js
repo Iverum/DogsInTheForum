@@ -41,15 +41,18 @@ export class Thread extends Component {
   }
 
   createNewPost(post) {
-    // TODO handle post.hand & put the values somewhere
     const { threads, params } = this.props
     const thread = threads[params.uuid]
     let threadLength = 0
     if (thread) {
       threadLength = thread.length
     }
+    const database = firebase.database()
+    if (!_.isEmpty(post.hand)) {
+      database.ref(`hands/${post.character}/${params.uuid}`).set(post.hand)
+    }
     this.postRef.push(post)
-    firebase.database().ref(`threads/${params.uuid}`).child('postCount').set(threadLength + 1)
+    database.ref(`threads/${params.uuid}`).child('postCount').set(threadLength + 1)
   }
 
   renderPosts() {
