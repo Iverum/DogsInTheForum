@@ -15,18 +15,19 @@ export default class Post extends Component {
   }
 
   render() {
+    const { author, userDice, text } = this.props
     return (
       <section className='row post'>
         <div className='three columns'>
-          <img src={this.props.imageURL} />
-          <h3 className='username'>{this.props.username}</h3>
+          <img alt='{author.name} avatar' src={author.avatar} />
+          <h3 className='username'>{author.name}</h3>
         </div>
         <div className='nine columns'>
           <div className={cn({
             row: true,
-            bottomBorder: !_.isEmpty(this.props.userDice)
+            bottomBorder: !_.isEmpty(userDice)
           })}>
-            <div className='text' dangerouslySetInnerHTML={{ __html: mdRenderer.render(this.props.text) }} />
+            <div className='text' dangerouslySetInnerHTML={{ __html: mdRenderer.render(text) }} />
           </div>
           <div className='row'>
             {this.renderDice()}
@@ -44,7 +45,10 @@ Post.defaultProps = {
 }
 
 Post.propTypes = {
-  username: PropTypes.string.isRequired,
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired
+  }).isRequired,
   imageURL: PropTypes.string,
   text: PropTypes.string.isRequired,
   userDice: PropTypes.arrayOf(PropTypes.shape({

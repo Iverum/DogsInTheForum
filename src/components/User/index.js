@@ -8,7 +8,7 @@ export class User extends Component {
     return (
       <div className="twelve columns">
         <div className='row'>
-          <img className='three columns' src={this.props.user.avatar} />
+          <img className='three columns' alt='{this.props.user.name} avatar' src={this.props.user.avatar} />
           <h1 className='nine columns'>{this.props.user.name}</h1>
         </div>
         <hr />

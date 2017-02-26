@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import firebase from 'firebase'
+import _ from 'lodash'
 import Post from './post'
 import NewPost from './new_post'
 import * as threadActions from './dux'
+import * as userActions from '../User/dux'
 
 export class Thread extends Component {
 
@@ -30,6 +32,11 @@ export class Thread extends Component {
   updateThreadFromDatabase(data) {
     const uuid = this.props.params.uuid
     const post = data.val()
+    if (!_.has(this.props.users, post.author)) {
+      firebase.database().ref(`users/${post.author}`).once('value', data => {
+        this.props.dispatch(userActions.addUser(data.val()))
+      })
+    }
     this.props.dispatch(threadActions.addPost(uuid, post))
   }
 
@@ -53,6 +60,7 @@ export class Thread extends Component {
         <Post
           key={i}
           {...post}
+          author={this.props.users[post.author]}
         />
       )
     })
@@ -75,5 +83,6 @@ export class Thread extends Component {
 
 export default connect(state => ({
   threads: state.threads,
-  user: state.users.currentUser
+  user: state.users.currentUser,
+  users: state.users.users
 }))(Thread)

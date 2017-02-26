@@ -1,11 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import md5 from 'md5'
+import _ from 'lodash'
 import handleCommands from './commands'
-
-function buildGravatarURL(email) {
-  const hash = md5(email.toLowerCase().trim())
-  return `https://www.gravatar.com/avatar/${hash}?d=identicon&s=175`
-}
 
 export default class NewPost extends Component {
 
@@ -26,16 +21,15 @@ export default class NewPost extends Component {
       post.userDice = post.dice
       delete post.dice
       this.props.onSubmit({
-        username: this.props.user.name,
-        imageURL: buildGravatarURL(this.props.user.email),
-        ...post
+        ...post,
+        author: this.props.user.id
       })
       this.setState({ value: '' })
     }
   }
 
   render() {
-    if (!this.props.user.name) { return null }
+    if (_.isEmpty(this.props.user)) { return null }
 
     return (
       <div className="row">
@@ -53,8 +47,6 @@ export default class NewPost extends Component {
 }
 
 NewPost.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string
-  }).isRequired,
+  user: PropTypes.object,
   onSubmit: PropTypes.func
 }
