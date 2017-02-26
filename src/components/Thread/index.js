@@ -6,6 +6,7 @@ import Post from './post'
 import NewPost from './new_post'
 import * as threadActions from './dux'
 import * as userActions from '../User/dux'
+import * as characterActions from '../Character/dux'
 
 export class Thread extends Component {
 
@@ -37,6 +38,11 @@ export class Thread extends Component {
         this.props.dispatch(userActions.addUser(data.val()))
       })
     }
+    if (!_.isEmpty(post.character) && !_.has(this.props.characters, post.character)) {
+      firebase.database().ref(`characters/${post.author}/${post.character}`).once('value', data => {
+        this.props.dispatch(characterActions.addCharacter(data.val()))
+      })
+    }
     this.props.dispatch(threadActions.addPost(uuid, post))
   }
 
@@ -66,6 +72,7 @@ export class Thread extends Component {
           key={i}
           {...post}
           author={this.props.users[post.author]}
+          character={this.props.characters[post.character]}
         />
       )
     })

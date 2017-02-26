@@ -42,17 +42,6 @@ export default class NewPost extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         ></textarea>
-        <div className='row'>
-          <label className='two columns' style={{ marginTop: '1rem', marginLeft: 0 }}>
-            <input type='checkbox' />
-            <span style={{ marginLeft: '1rem' }}>Show hand?</span>
-          </label>
-          <select className='ten columns'>
-            {_.values(this.props.characters).map(character => {
-              return <option key={character.uuid} value={character.uuid}>{character.name}</option>
-            })}
-          </select>
-        </div>
         <input className="button-primary" type="submit" value="Submit" onClick={this.submitPost} />
       </div>
     )
