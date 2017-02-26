@@ -22,6 +22,20 @@ function updateCharacter(data) {
   store.dispatch(characterActions.addCharacter(data.val()))
 }
 
+function saveUser(authUser) {
+  const { uid: id, email, displayName: name } = authUser
+  const hash = md5(email.toLowerCase().trim())
+  const user = {
+    id,
+    name,
+    email,
+    avatar: `https://www.gravatar.com/avatar/${hash}?d=identicon&s=175`
+  }
+  store.dispatch(userActions.logIn(user))
+  firebase.database().ref(`users/${id}`).set(user)
+  return id
+}
+
 class App extends Component {
   componentWillMount() {
     firebase.initializeApp(config)
@@ -29,16 +43,7 @@ class App extends Component {
     auth.getRedirectResult()
       .then(result => {
         if (auth.currentUser) {
-          const { uid: id, email, displayName: name } = auth.currentUser
-          const hash = md5(email.toLowerCase().trim())
-          const user = {
-            id,
-            name,
-            email,
-            avatar: `https://www.gravatar.com/avatar/${hash}?d=identicon&s=175`
-          }
-          store.dispatch(userActions.logIn(user))
-          firebase.database().ref(`users/${id}`).set(user)
+          const id = saveUser(auth.currentUser)
           this.characterRef = firebase.database().ref(`characters/${id}`)
           this.characterRef.off()
           this.characterRef.on('child_added', updateCharacter)
