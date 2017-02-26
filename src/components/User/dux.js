@@ -4,7 +4,7 @@ const LOG_OUT = 'ditf/users/LOG_OFF'
 const ADD_USER = 'ditf/users/ADD_USER'
 
 // Reducer
-export default function reducer(state = {}, action = {}) {
+export default function reducer(state = { users: {} }, action = {}) {
   switch (action.type) {
     case LOG_IN: {
       return {

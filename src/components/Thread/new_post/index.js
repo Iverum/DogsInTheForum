@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import moment from 'moment'
 import _ from 'lodash'
 import handleCommands from './commands'
 
@@ -22,7 +23,8 @@ export default class NewPost extends Component {
       delete post.dice
       this.props.onSubmit({
         ...post,
-        author: this.props.user.id
+        author: this.props.user.id,
+        created: moment().format()
       })
       this.setState({ value: '' })
     }
