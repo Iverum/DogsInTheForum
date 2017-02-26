@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
 import firebase from 'firebase'
+import md5 from 'md5'
 import config from './config'
 import store from './store'
 import * as userActions from './components/User/dux'
@@ -28,8 +29,16 @@ class App extends Component {
     auth.getRedirectResult()
       .then(result => {
         if (auth.currentUser) {
-          const id = auth.currentUser.uid
-          store.dispatch(userActions.logIn({ name: auth.currentUser.displayName, email: auth.currentUser.email }))
+          const { uid: id, email, displayName: name } = auth.currentUser
+          const hash = md5(email.toLowerCase().trim())
+          const user = {
+            id,
+            name,
+            email,
+            avatar: `https://www.gravatar.com/avatar/${hash}?d=identicon&s=175`
+          }
+          store.dispatch(userActions.logIn(user))
+          firebase.database().ref(`users/${id}`).set(user)
           this.characterRef = firebase.database().ref(`characters/${id}`)
           this.characterRef.off()
           this.characterRef.on('child_added', updateCharacter)
