@@ -9,13 +9,13 @@ const mdRenderer = new Markdown()
 
 export default class Post extends Component {
   renderDice() {
-    if (_.isEmpty(this.props.userDice)) { return null }
-    const caption = `${this.props.username} rolled:`
-    return <Dice dice={this.props.userDice} caption={caption} />
+    if (_.isEmpty(this.props.dice)) { return null }
+    const caption = `${this.props.author.name} rolled:`
+    return <Dice dice={this.props.dice} caption={caption} />
   }
 
   render() {
-    const { author, userDice, text } = this.props
+    const { author, dice, text } = this.props
     return (
       <section className='row post'>
         <div className='three columns'>
@@ -25,7 +25,7 @@ export default class Post extends Component {
         <div className='nine columns'>
           <div className={cn({
             row: true,
-            bottomBorder: !_.isEmpty(userDice)
+            bottomBorder: !_.isEmpty(dice)
           })}>
             <div className='text' dangerouslySetInnerHTML={{ __html: mdRenderer.render(text) }} />
           </div>
