@@ -18,9 +18,10 @@ export default class NewPost extends Component {
 
   submitPost(e) {
     if (this.props.onSubmit) {
-      const post = handleCommands(this.state.value)
+      let post = handleCommands(this.state.value)
       post.hand = post.dice.hand
       post.dice = post.dice.rolledDice
+      post = _.omitBy(post, property => property === undefined)
       this.props.onSubmit({
         ...post,
         author: this.props.user.id,
@@ -33,7 +34,6 @@ export default class NewPost extends Component {
   render() {
     if (_.isEmpty(this.props.user)) { return null }
 
-    console.log(this.props)
     return (
       <div className="row">
         <textarea
