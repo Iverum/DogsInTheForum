@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import firebase from 'firebase'
 import store from '../../../store'
 
 const characterCommandRegexes = [
@@ -11,7 +12,7 @@ const characterCommands = {
 
 const commandRegexes = [
   /roll (\d*)(d\d+)/,
-  /(.+)!(.+)/
+  /!(.+)/
 ]
 
 function getCharacterStat(character, command) {
@@ -39,15 +40,8 @@ function rollDice(command) {
   return internalRollDice(number, size)
 }
 
-function findCharacter(command) {
-  const { characters } = store.getState()
-  const name = commandRegexes[1].exec(command)[1]
-  return _.find(characters, character => character.name === name)
-}
-
-function executeCharacterCommand(command) {
+function executeCharacterCommand(command, character) {
   let dice = []
-  const character = findCharacter(command)
   characterCommandRegexes.forEach(regex => {
     if (regex.test(command)) {
       const newDice = characterCommands[regex](character, command)
@@ -68,35 +62,37 @@ const commands = {
   [commandRegexes[1]]: executeCharacterCommand
 }
 
-export default function handleCommands(text) {
-  const bindingRegex = /\[\[(.+)\]\]/g
-  let character
-  let dice = {
-    rolledDice: [],
-    hand: []
-  }
-  let possibleCommandMatch = bindingRegex.exec(text)
-  while (possibleCommandMatch !== null) {
-    // eslint-disable-next-line no-loop-func
-    commandRegexes.forEach(regex => {
-      if (regex.test(possibleCommandMatch[1])) {
-        const newDice = commands[regex](possibleCommandMatch[1])
-        if (regex === commandRegexes[0]) {
-          dice.rolledDice = [
-            ...dice.rolledDice,
-            ...newDice
-          ]
-        } else if (regex === commandRegexes[1]) {
-          character = findCharacter(possibleCommandMatch[1]).uuid
-          dice.hand = [
-            ...dice.hand,
-            ...newDice
-          ]
-        }
+export default function handleCommands(text, thread, character) {
+  const playerCharacter = store.getState().characters.player[character]
+  return firebase.database().ref(`hands/${character}/${thread}`).once('value')
+    .then(data => {
+      const bindingRegex = /\[\[(.+)\]\]/g
+      let dice = {
+        rolledDice: [],
+        hand: data.val() || []
       }
+      let possibleCommandMatch = bindingRegex.exec(text)
+      while (possibleCommandMatch !== null) {
+        // eslint-disable-next-line no-loop-func
+        commandRegexes.forEach(regex => {
+          if (regex.test(possibleCommandMatch[1])) {
+            const newDice = commands[regex](possibleCommandMatch[1], playerCharacter)
+            if (regex === commandRegexes[0]) {
+              dice.rolledDice = [
+                ...dice.rolledDice,
+                ...newDice
+              ]
+            } else if (regex === commandRegexes[1]) {
+              dice.hand = [
+                ...dice.hand,
+                ...newDice
+              ]
+            }
+          }
+        })
+        possibleCommandMatch = bindingRegex.exec(text)
+      }
+      const newText = text.replace(bindingRegex, '').trim()
+      return { dice, character, text: newText }
     })
-    possibleCommandMatch = bindingRegex.exec(text)
-  }
-  const newText = text.replace(bindingRegex, '').trim()
-  return { dice, character, text: newText }
 }

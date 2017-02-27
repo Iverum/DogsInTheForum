@@ -86,6 +86,7 @@ export class Thread extends Component {
         <NewPost
           user={this.props.user}
           characters={this.props.characters}
+          thread={this.props.params.uuid}
           onSubmit={this.createNewPost}
         />
       </div>
